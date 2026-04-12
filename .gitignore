@@ -1,9 +1,7 @@
 node_modules
-.next
-out
+dist
 *.pem
 .env*.local
-.vercel
 *.tsbuildinfo
 /android/keystore.properties
 /android/upload-keystore.jks

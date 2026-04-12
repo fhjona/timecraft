@@ -1,4 +1,4 @@
-package com.fjona.myapp;
+package com.fjona.datetimecalculator;
 
 import com.getcapacitor.BridgeActivity;
 

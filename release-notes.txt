@@ -1,0 +1,50 @@
+<en-US>
+First release of TimeCraft - your complete time calculator.
+- Calculate time spans between any two dates
+- Timezone converter with 50+ zones and automatic DST
+- Public holidays for Norway and Brazil + custom holidays
+- Live countdowns with real-time ticking
+- Work time calculator with breaks and overtime
+- Batch calculation and formula mode
+- 5 languages supported
+</en-US>
+<nb-NO>
+Første utgivelse av TimeCraft - din komplette tidskalkulator.
+- Beregn tidsintervall mellom to datoer
+- Tidssonekonvertering med 50+ soner og automatisk sommertid
+- Helligdager for Norge og Brasil med egne fridager
+- Live nedtellinger med sanntidsvisning
+- Arbeidstidkalkulator med pauser og overtid
+- Batch-beregning og formelmodus
+- 5 språk støttet
+</nb-NO>
+<pt-BR>
+Primeiro lançamento do TimeCraft - sua calculadora de tempo completa.
+- Calcule intervalos entre datas
+- Conversor de fuso horário com 50+ fusos e horário de verão automático
+- Feriados do Brasil e Noruega + feriados personalizados
+- Contagens regressivas ao vivo
+- Calculadora de horas com pausas e horas extras
+- Cálculo em lote e modo fórmula
+- 5 idiomas disponíveis
+</pt-BR>
+<sv-SE>
+Första utgåvan av TimeCraft - din kompletta tidskalkylator.
+- Beräkna tidsintervall mellan två datum
+- Tidszonkonverterare med 50+ zoner och automatisk sommar-/vintertid
+- Allmänna helgdagar för Norge och Brasilien + egna helgdagar
+- Nedräkningar i realtid
+- Arbetstidskalkylator med raster och övertid
+- Batchberäkning och formelläge
+- 5 språk tillgängliga
+</sv-SE>
+<da-DK>
+Første udgivelse af TimeCraft - din komplette tidsberegner.
+- Beregn tidsintervaller mellem to datoer
+- Tidszonekonvertering med 50+ zoner og automatisk sommer-/vintertid
+- Helligdage for Norge og Brasilien + egne fridage
+- Nedtællinger i realtid
+- Arbejdstidsberegner med pauser og overarbejde
+- Batchberegning og formeltilstand
+- 5 sprog understøttet
+</da-DK>

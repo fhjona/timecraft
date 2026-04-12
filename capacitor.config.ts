@@ -1,9 +1,9 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.fjona.myapp',
+  appId: 'com.fjona.datetimecalculator',
   appName: 'Date Time Calculator',
-  webDir: 'out'
+  webDir: 'dist'
 };
 
 export default config;
