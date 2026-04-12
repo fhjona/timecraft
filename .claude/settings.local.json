@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/fjona/.claude/projects/**)",
+      "Read(//c/Users/fjona/.claude/projects/c--Users-fjona-OneDrive-Cursor/**)",
+      "Read(//c/Dev/**)",
+      "Read(//c/Dev/exercise-planner/**)",
+      "Read(//c//**)",
+      "Bash(mv \"C:/Users/fjona/OneDrive/Cursor/date-time-calculator\" \"C:/Dev/date-time-calculator\")",
+      "Bash(mkdir -p \"C:/Dev/date-time-calculator\")",
+      "Bash(robocopy \"C:\\\\\\\\Users\\\\\\\\fjona\\\\\\\\OneDrive\\\\\\\\Cursor\\\\\\\\date-time-calculator\" \"C:\\\\\\\\Dev\\\\\\\\date-time-calculator\" /E /COPY:DAT /R:1 /W:1 /NFL /NDL /NP /MT:16 //XJ)",
+      "Bash(echo \"robocopy exit: $?\")",
+      "Bash(cmd.exe //c \"robocopy C:\\\\Users\\\\fjona\\\\OneDrive\\\\Cursor\\\\date-time-calculator C:\\\\Dev\\\\date-time-calculator /E /COPY:DAT /R:1 /W:1 /NFL /NDL /NP /MT:16 /XJ\")"
+    ]
+  }
+}

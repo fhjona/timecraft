@@ -1,0 +1,10 @@
+node_modules
+.next
+out
+*.pem
+.env*.local
+.vercel
+*.tsbuildinfo
+/android/keystore.properties
+/android/upload-keystore.jks
+*.jks

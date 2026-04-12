@@ -1,0 +1,7 @@
+{
+  "terminal.integrated.defaultProfile.windows": "Command Prompt",
+  "terminal.integrated.env.windows": {
+    "Path": "C:\\Program Files\\nodejs;${env:Path}",
+    "PATH": "C:\\Program Files\\nodejs;${env:PATH}"
+  }
+}
