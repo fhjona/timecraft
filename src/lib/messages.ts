@@ -113,6 +113,27 @@ export type MessagePack = {
   holBusinessDays: string;
   holHolidayList: string;
   holNoHolidays: string;
+  holCustomTitle: string;
+  holCustomName: string;
+  // Work time
+  wtTitle: string;
+  wtLede: string;
+  wtStart: string;
+  wtEnd: string;
+  wtBreak: string;
+  wtThreshold: string;
+  wtGross: string;
+  wtNet: string;
+  wtRegular: string;
+  wtOvertime: string;
+  wtWeekSummary: string;
+  wtAddDay: string;
+  // Nav
+  navWorktime: string;
+  // Batch formula
+  batchFormula: string;
+  batchFormulaHelp: string;
+  batchFormulaPlaceholder: string;
   // Units
   units: Record<UnitKind, [string, string]>;
 };
@@ -217,6 +238,24 @@ export const MESSAGES: Record<Locale, MessagePack> = {
     holBusinessDays: "Business days",
     holHolidayList: "Holidays in range",
     holNoHolidays: "No holidays in this range.",
+    holCustomTitle: "Custom holidays",
+    holCustomName: "Name",
+    wtTitle: "Work time calculator",
+    wtLede: "Calculate work hours with breaks and overtime.",
+    wtStart: "Start",
+    wtEnd: "End",
+    wtBreak: "Break (min)",
+    wtThreshold: "Standard hours",
+    wtNet: "Net",
+    wtGross: "Gross",
+    wtRegular: "Regular",
+    wtOvertime: "Overtime",
+    wtWeekSummary: "Week summary",
+    wtAddDay: "Add day",
+    navWorktime: "Work time",
+    batchFormula: "Formula",
+    batchFormulaHelp: "Use d=days, w=weeks, m=months, y=years. E.g: +30d +2m",
+    batchFormulaPlaceholder: "e.g. +30d +2m -1y",
     units: {
       year: ["year", "years"],
       month: ["month", "months"],
@@ -323,6 +362,24 @@ export const MESSAGES: Record<Locale, MessagePack> = {
     holBusinessDays: "Virkedager",
     holHolidayList: "Helligdager i perioden",
     holNoHolidays: "Ingen helligdager i denne perioden.",
+    holCustomTitle: "Egne fridager",
+    holCustomName: "Navn",
+    wtTitle: "Arbeidstidkalkulator",
+    wtLede: "Beregn arbeidstid med pauser og overtid.",
+    wtStart: "Start",
+    wtEnd: "Slutt",
+    wtBreak: "Pause (min)",
+    wtThreshold: "Normalarbeidstid (timer)",
+    wtNet: "Netto",
+    wtGross: "Brutto",
+    wtRegular: "Normaltid",
+    wtOvertime: "Overtid",
+    wtWeekSummary: "Ukeoversikt",
+    wtAddDay: "Legg til dag",
+    navWorktime: "Arbeidstid",
+    batchFormula: "Formel",
+    batchFormulaHelp: "Bruk d=dager, w=uker, m=m\u00e5neder, y=\u00e5r. F.eks: +30d +2m",
+    batchFormulaPlaceholder: "f.eks. +30d +2m -1y",
     units: {
       year: ["\u00e5r", "\u00e5r"],
       month: ["m\u00e5ned", "m\u00e5neder"],
@@ -429,6 +486,24 @@ export const MESSAGES: Record<Locale, MessagePack> = {
     holBusinessDays: "Dias \u00fateis",
     holHolidayList: "Feriados no per\u00edodo",
     holNoHolidays: "Nenhum feriado neste per\u00edodo.",
+    holCustomTitle: "Feriados personalizados",
+    holCustomName: "Nome",
+    wtTitle: "Calculadora de horas",
+    wtLede: "Calcule horas trabalhadas com pausas e horas extras.",
+    wtStart: "In\u00edcio",
+    wtEnd: "Fim",
+    wtBreak: "Pausa (min)",
+    wtThreshold: "Jornada normal (horas)",
+    wtNet: "L\u00edquido",
+    wtGross: "Bruto",
+    wtRegular: "Normal",
+    wtOvertime: "Hora extra",
+    wtWeekSummary: "Resumo semanal",
+    wtAddDay: "Adicionar dia",
+    navWorktime: "Horas",
+    batchFormula: "F\u00f3rmula",
+    batchFormulaHelp: "Use d=dias, w=semanas, m=meses, y=anos. Ex: +30d +2m",
+    batchFormulaPlaceholder: "ex. +30d +2m -1y",
     units: {
       year: ["ano", "anos"],
       month: ["m\u00eas", "meses"],
@@ -535,6 +610,24 @@ export const MESSAGES: Record<Locale, MessagePack> = {
     holBusinessDays: "Arbetsdagar",
     holHolidayList: "Helgdagar i perioden",
     holNoHolidays: "Inga helgdagar i denna period.",
+    holCustomTitle: "Egna helgdagar",
+    holCustomName: "Namn",
+    wtTitle: "Arbetstidskalkylator",
+    wtLede: "Ber\u00e4kna arbetstid med raster och \u00f6vertid.",
+    wtStart: "Start",
+    wtEnd: "Slut",
+    wtBreak: "Rast (min)",
+    wtThreshold: "Normal arbetstid (timmar)",
+    wtNet: "Netto",
+    wtGross: "Brutto",
+    wtRegular: "Ordinarie",
+    wtOvertime: "\u00d6vertid",
+    wtWeekSummary: "Vecko\u00f6versikt",
+    wtAddDay: "L\u00e4gg till dag",
+    navWorktime: "Arbetstid",
+    batchFormula: "Formel",
+    batchFormulaHelp: "Anv\u00e4nd d=dagar, w=veckor, m=m\u00e5nader, y=\u00e5r. T.ex: +30d +2m",
+    batchFormulaPlaceholder: "t.ex. +30d +2m -1y",
     units: {
       year: ["\u00e5r", "\u00e5r"],
       month: ["m\u00e5nad", "m\u00e5nader"],
@@ -641,6 +734,24 @@ export const MESSAGES: Record<Locale, MessagePack> = {
     holBusinessDays: "Hverdage",
     holHolidayList: "Helligdage i perioden",
     holNoHolidays: "Ingen helligdage i denne periode.",
+    holCustomTitle: "Egne fridage",
+    holCustomName: "Navn",
+    wtTitle: "Arbejdstidsberegner",
+    wtLede: "Beregn arbejdstid med pauser og overarbejde.",
+    wtStart: "Start",
+    wtEnd: "Slut",
+    wtBreak: "Pause (min)",
+    wtThreshold: "Normal arbejdstid (timer)",
+    wtNet: "Netto",
+    wtGross: "Brutto",
+    wtRegular: "Normal",
+    wtOvertime: "Overarbejde",
+    wtWeekSummary: "Ugeoversigt",
+    wtAddDay: "Tilf\u00f8j dag",
+    navWorktime: "Arbejdstid",
+    batchFormula: "Formel",
+    batchFormulaHelp: "Brug d=dage, w=uger, m=m\u00e5neder, y=\u00e5r. F.eks: +30d +2m",
+    batchFormulaPlaceholder: "f.eks. +30d +2m -1y",
     units: {
       year: ["\u00e5r", "\u00e5r"],
       month: ["m\u00e5ned", "m\u00e5neder"],

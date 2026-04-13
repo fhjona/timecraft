@@ -105,7 +105,7 @@ export function HolidayCalculator({ locale }: Props) {
         {/* Custom holidays */}
         <div className="mb-4 p-3 bg-slate-900/50 rounded-lg border border-slate-700">
           <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-2">
-            {locale === "nb" ? "Egne fridager" : locale === "pt-BR" ? "Feriados personalizados" : "Custom holidays"}
+            {m("holCustomTitle")}
           </p>
           <div className="flex flex-wrap gap-2 mb-2">
             <input
@@ -116,7 +116,7 @@ export function HolidayCalculator({ locale }: Props) {
             />
             <input
               type="text"
-              placeholder={locale === "nb" ? "Navn" : locale === "pt-BR" ? "Nome" : "Name"}
+              placeholder={m("holCustomName")}
               value={newCustomName}
               onChange={(e) => setNewCustomName(e.target.value)}
               className="text-sm py-1.5 px-2 rounded border border-slate-700 bg-slate-900 text-slate-200 flex-1 min-w-[8rem] focus:outline-none focus:border-amber-400"

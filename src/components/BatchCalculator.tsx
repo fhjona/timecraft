@@ -121,30 +121,9 @@ export function BatchCalculator({ locale }: Props) {
     setFormulaResult(d.toLocaleDateString(locale));
   }, [baseDate, formula, locale]);
 
-  const formulaPlaceholder =
-    locale === "nb"
-      ? "f.eks. +30d +2m -1y"
-      : locale === "pt-BR"
-        ? "ex. +30d +2m -1y"
-        : "e.g. +30d +2m -1y";
-
-  const formulaLabel =
-    locale === "nb"
-      ? "Formel"
-      : locale === "pt-BR"
-        ? "F\u00f3rmula"
-        : locale === "sv"
-          ? "Formel"
-          : locale === "da"
-            ? "Formel"
-            : "Formula";
-
-  const formulaHelp =
-    locale === "nb"
-      ? "Bruk d=dager, w=uker, m=m\u00e5neder, y=\u00e5r. F.eks: +30d +2m"
-      : locale === "pt-BR"
-        ? "Use d=dias, w=semanas, m=meses, y=anos. Ex: +30d +2m"
-        : "Use d=days, w=weeks, m=months, y=years. E.g: +30d +2m";
+  const formulaPlaceholder = m("batchFormulaPlaceholder");
+  const formulaLabel = m("batchFormula");
+  const formulaHelp = m("batchFormulaHelp");
 
   return (
     <div>

@@ -47,4 +47,4 @@ Første udgivelse af TimeCraft - din komplette tidsberegner.
 - Arbejdstidsberegner med pauser og overarbejde
 - Batchberegning og formeltilstand
 - 5 sprog understøttet
-</da-DK>
+</da-DK>s

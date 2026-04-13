@@ -37,23 +37,12 @@ const App = () => {
 
   const m = (k: Parameters<typeof msg>[1]) => msg(locale, k);
 
-  const worktimeLabel =
-    locale === "nb"
-      ? "Arbeidstid"
-      : locale === "pt-BR"
-        ? "Horas"
-        : locale === "sv"
-          ? "Arbetstid"
-          : locale === "da"
-            ? "Arbejdstid"
-            : "Work time";
-
   const tabs: { id: Tab; label: string }[] = [
     { id: "span", label: m("navSpan") },
     { id: "timezone", label: m("navTimezone") },
     { id: "countdown", label: m("navCountdown") },
     { id: "holidays", label: m("navHolidays") },
-    { id: "worktime", label: worktimeLabel },
+    { id: "worktime", label: m("navWorktime") },
     { id: "batch", label: m("navBatch") },
   ];
 
@@ -82,7 +71,7 @@ const App = () => {
         >
           <option value="en">English</option>
           <option value="nb">Norsk</option>
-          <option value="pt-BR">Portugu\u00eas</option>
+          <option value="pt-BR">Portugu&#234;s</option>
           <option value="sv">Svenska</option>
           <option value="da">Dansk</option>
         </select>
