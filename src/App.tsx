@@ -71,9 +71,17 @@ const App = () => {
         >
           <option value="en">English</option>
           <option value="nb">Norsk</option>
-          <option value="pt-BR">Portugu&#234;s</option>
           <option value="sv">Svenska</option>
           <option value="da">Dansk</option>
+          <option value="de">Deutsch</option>
+          <option value="fr">Fran&#231;ais</option>
+          <option value="es">Espa&#241;ol</option>
+          <option value="it">Italiano</option>
+          <option value="pt-BR">Portugu&#234;s</option>
+          <option value="pl">Polski</option>
+          <option value="tr">T&#252;rk&#231;e</option>
+          <option value="ja">&#26085;&#26412;&#35486;</option>
+          <option value="ko">&#54620;&#44397;&#50612;</option>
         </select>
       </div>
 

@@ -13,6 +13,14 @@ export function guessLocaleFromNavigator(): Locale {
   if (lower.startsWith("nn")) return "nb";
   if (lower.startsWith("sv")) return "sv";
   if (lower.startsWith("da")) return "da";
+  if (lower.startsWith("es")) return "es";
+  if (lower.startsWith("de")) return "de";
+  if (lower.startsWith("fr")) return "fr";
+  if (lower.startsWith("it")) return "it";
+  if (lower.startsWith("pl")) return "pl";
+  if (lower.startsWith("tr")) return "tr";
+  if (lower.startsWith("ja")) return "ja";
+  if (lower.startsWith("ko")) return "ko";
   if (lower.startsWith("en")) return "en";
   return "en";
 }

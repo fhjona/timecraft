@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import type { HolidayCountry, Holiday } from "../lib/holidays";
-import { calcBusinessDays } from "../lib/holidays";
+import { calcBusinessDays, COUNTRY_LIST } from "../lib/holidays";
 import type { Locale } from "../lib/messages";
 import { msg } from "../lib/messages";
 
@@ -12,6 +12,7 @@ export function HolidayCalculator({ locale }: Props) {
   const year = now.getFullYear();
 
   const [country, setCountry] = useState<HolidayCountry>("BR");
+  const [selectedYear, setSelectedYear] = useState(year);
   const [from, setFrom] = useState(`${year}-01-01`);
   const [to, setTo] = useState(`${year}-12-31`);
   const [customHolidays, setCustomHolidays] = useState<Holiday[]>([]);
@@ -57,21 +58,30 @@ export function HolidayCalculator({ locale }: Props) {
               onChange={(e) => setCountry(e.target.value as HolidayCountry)}
               className="font-[inherit] text-sm py-2.5 px-3 rounded-lg border border-slate-700 bg-slate-900 text-slate-200 focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20"
             >
-              <option value="NO">{m("holCountryNO")}</option>
-              <option value="BR">{m("holCountryBR")}</option>
+              {COUNTRY_LIST.map((c) => (
+                <option key={c.code} value={c.code}>{c.name}</option>
+              ))}
             </select>
           </div>
           <div className="flex flex-col gap-1">
             <label htmlFor="hol-year" className="text-sm font-medium text-slate-200">
               {m("holYear")}
             </label>
-            <input
-              type="number"
+            <select
               id="hol-year"
-              value={year}
-              readOnly
-              className="w-full text-sm py-2.5 px-3 rounded-lg border border-slate-700 bg-slate-900 text-slate-400 focus:outline-none"
-            />
+              value={selectedYear}
+              onChange={(e) => {
+                const y = +e.target.value;
+                setSelectedYear(y);
+                setFrom(`${y}-01-01`);
+                setTo(`${y}-12-31`);
+              }}
+              className="w-full font-[inherit] text-sm py-2.5 px-3 rounded-lg border border-slate-700 bg-slate-900 text-slate-200 cursor-pointer focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20"
+            >
+              {Array.from({ length: 21 }, (_, i) => year - 5 + i).map((y) => (
+                <option key={y} value={y}>{y}</option>
+              ))}
+            </select>
           </div>
         </div>
 

@@ -24,10 +24,8 @@ export function DateSpanCalculator({ locale }: Props) {
 
   useEffect(() => {
     const now = new Date();
-    const weekAgo = new Date(now);
-    weekAgo.setDate(weekAgo.getDate() - 7);
-    setStart(toLocalInput(weekAgo));
-    setEnd(toLocalInput(now));
+    setStart(toLocalInput(now));
+    setEnd("");
   }, []);
 
   const run = useCallback(() => {
