@@ -1,0 +1,114 @@
+== KORT BESKRIVELSE (maks 80 tegn) ==
+
+EN: All your time tools in one place. Zones, holidays, countdowns & more.
+NB: Alle tidsverktøy samlet. Tidssoner, helligdager, nedtelling og mer.
+PT: Ferramentas de tempo em um lugar. Fusos, feriados, contagens e mais.
+SV: Alla tidsverktyg samlade. Tidszoner, helgdagar, nedräkning och mer.
+DA: Alle tidsværktøjer samlet. Tidszoner, helligdage, nedtælling og mere.
+
+
+== LANG BESKRIVELSE ==
+
+-- EN --
+
+TimeCraft is a powerful all-in-one date and time calculator with 6 tools built in:
+
+DATE SPAN - Calculate the exact difference between two dates in years, months, days, hours, minutes and seconds.
+
+TIMEZONE CONVERTER - Convert times between 50+ world timezones with automatic DST handling. Includes all Brazilian timezones (São Paulo, Manaus, Belém, Recife, and more).
+
+LIVE COUNTDOWN - Create multiple countdowns to important dates with live ticking, progress bars, and persistent storage.
+
+HOLIDAYS AND BUSINESS DAYS - Calculate business days excluding weekends and public holidays for Norway and Brazil. Add your own custom holidays for precise calculations.
+
+WORK TIME CALCULATOR - Track daily work hours with breaks and overtime thresholds. Get a full weekly summary with total net hours and overtime.
+
+BATCH AND FORMULA MODE - Calculate multiple date offsets at once from a base date, or use the formula mode with expressions like +30d +2m -1y for quick calculations.
+
+Available in 5 languages: English, Norwegian, Portuguese (Brazil), Swedish, and Danish.
+
+No account required. No data collected. Everything stays on your device.
+
+
+-- NB --
+
+TimeCraft er en komplett dato- og tidskalkulator med 6 innebygde verktøy:
+
+DATOBEREGNER - Beregn nøyaktig forskjell mellom to datoer i år, måneder, dager, timer, minutter og sekunder.
+
+TIDSSONEKONVERTERING - Konverter tid mellom 50+ tidssoner med automatisk sommertid. Inkluderer alle brasilianske tidssoner (São Paulo, Manaus, Belém, Recife og flere).
+
+LIVE NEDTELLING - Lag flere nedtellinger til viktige datoer med sanntidsvisning, framdriftslinjer og lagring.
+
+HELLIGDAGER OG VIRKEDAGER - Beregn virkedager uten helger og helligdager for Norge og Brasil. Legg til egne fridager for presise beregninger.
+
+ARBEIDSTIDKALKULATOR - Registrer daglige arbeidstimer med pauser og overtidsgrenser. Få full ukeoversikt med total nettotid og overtid.
+
+BATCH OG FORMELMODUS - Beregn flere datoforskyvninger fra en basisdato, eller bruk formelmodus med uttrykk som +30d +2m -1y for raske beregninger.
+
+Tilgjengelig på 5 språk: norsk, engelsk, portugisisk (Brasil), svensk og dansk.
+
+Ingen konto nødvendig. Ingen data samles inn. Alt forblir på enheten din.
+
+
+-- PT-BR --
+
+TimeCraft é uma calculadora completa de data e hora com 6 ferramentas integradas:
+
+INTERVALO DE DATAS - Calcule a diferença exata entre duas datas em anos, meses, dias, horas, minutos e segundos.
+
+CONVERSOR DE FUSO HORÁRIO - Converta horários entre mais de 50 fusos horários com tratamento automático de horário de verão. Inclui todos os fusos brasileiros (São Paulo, Manaus, Belém, Recife e outros).
+
+CONTAGEM REGRESSIVA AO VIVO - Crie múltiplas contagens regressivas para datas importantes com atualização em tempo real, barras de progresso e armazenamento persistente.
+
+FERIADOS E DIAS ÚTEIS - Calcule dias úteis excluindo fins de semana e feriados do Brasil e da Noruega. Adicione seus próprios feriados personalizados.
+
+CALCULADORA DE HORAS - Registre horas trabalhadas com pausas e limites de horas extras. Resumo semanal completo.
+
+CÁLCULO EM LOTE E FÓRMULA - Calcule múltiplos deslocamentos de data a partir de uma data base, ou use o modo fórmula com expressões como +30d +2m -1y.
+
+Disponível em 5 idiomas: português (Brasil), inglês, norueguês, sueco e dinamarquês.
+
+Sem conta necessária. Nenhum dado coletado. Tudo permanece no seu dispositivo.
+
+
+-- SV --
+
+TimeCraft är en komplett datum- och tidskalkylator med 6 inbyggda verktyg:
+
+DATUMBERÄKNARE - Beräkna exakt skillnad mellan två datum i år, månader, dagar, timmar, minuter och sekunder.
+
+TIDSZONKONVERTERARE - Konvertera tid mellan 50+ tidszoner med automatisk sommar-/vintertid. Inkluderar alla brasilianska tidszoner.
+
+NEDRÄKNING I REALTID - Skapa flera nedräkningar till viktiga datum med realtidsuppdatering, framstegsindikatorer och lagring.
+
+HELGDAGAR OCH ARBETSDAGAR - Beräkna arbetsdagar exklusive helger och helgdagar för Norge och Brasilien. Lägg till egna helgdagar.
+
+ARBETSTIDSKALKYLATOR - Registrera dagliga arbetstimmar med raster och övertidsgränser. Komplett veckoöversikt.
+
+BATCHBERÄKNING OCH FORMELLÄGE - Beräkna flera datumförskjutningar från ett basdatum, eller använd formelläge med uttryck som +30d +2m -1y.
+
+Tillgänglig på 5 språk: svenska, engelska, norska, portugisiska (Brasilien) och danska.
+
+Inget konto krävs. Ingen data samlas in. Allt stannar på din enhet.
+
+
+-- DA --
+
+TimeCraft er en komplet dato- og tidsberegner med 6 indbyggede værktøjer:
+
+DATOBEREGNER - Beregn præcis forskel mellem to datoer i år, måneder, dage, timer, minutter og sekunder.
+
+TIDSZONEKONVERTERING - Konverter tid mellem 50+ tidszoner med automatisk sommer-/vintertid. Inkluderer alle brasilianske tidszoner.
+
+NEDTÆLLING I REALTID - Opret flere nedtællinger til vigtige datoer med realtidsopdatering, fremskridtslinjer og lagring.
+
+HELLIGDAGE OG HVERDAGE - Beregn hverdage uden weekender og helligdage for Norge og Brasilien. Tilføj egne fridage.
+
+ARBEJDSTIDSBEREGNER - Registrer daglige arbejdstimer med pauser og overarbejdsgrænser. Komplet ugeoversigt.
+
+BATCHBEREGNING OG FORMELTILSTAND - Beregn flere datoforskydninger fra en basisdato, eller brug formeltilstand med udtryk som +30d +2m -1y.
+
+Tilgængelig på 5 sprog: dansk, engelsk, norsk, portugisisk (Brasilien) og svensk.
+
+Ingen konto nødvendig. Ingen data indsamles. Alt forbliver på din enhed.
