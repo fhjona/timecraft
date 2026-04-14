@@ -202,7 +202,7 @@ function labels(locale: Locale): Labels {
     },
   };
   // Merge with English defaults so all locales have complete labels
-  return { ...L.en, ...(L[locale] || {}) };
+  return { ...(L.en as Labels), ...(L[locale] || {}) };
 }
 
 export function SettingsPanel({ locale, settings, onChange, onClose }: Props) {
