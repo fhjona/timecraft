@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import type { Locale } from "../lib/messages";
+import { msg } from "../lib/messages";
 import type { Settings } from "../lib/settings";
 import { APP_VERSION, exportData, importData } from "../lib/settings";
 import { COUNTRY_LIST } from "../lib/holidays";
@@ -496,12 +497,12 @@ export function SettingsPanel({ locale, settings, onChange, onClose }: Props) {
                   onChange={(e) => update("defaultTab", e.target.value as Settings["defaultTab"])}
                   className="font-[inherit] text-sm py-2 px-3 rounded-lg border border-slate-700 bg-slate-800 text-slate-200 cursor-pointer focus:outline-none focus:border-amber-400"
                 >
-                  <option value="span">Date span</option>
-                  <option value="timezone">Timezones</option>
-                  <option value="countdown">Countdown</option>
-                  <option value="holidays">Holidays</option>
-                  <option value="worktime">Work time</option>
-                  <option value="batch">Batch</option>
+                  <option value="span">{msg(locale, "navSpan")}</option>
+                  <option value="timezone">{msg(locale, "navTimezone")}</option>
+                  <option value="countdown">{msg(locale, "navCountdown")}</option>
+                  <option value="holidays">{msg(locale, "navHolidays")}</option>
+                  <option value="worktime">{msg(locale, "navWorktime")}</option>
+                  <option value="batch">{msg(locale, "navBatch")}</option>
                 </select>
               </div>
               <label className="flex items-center justify-between cursor-pointer">
