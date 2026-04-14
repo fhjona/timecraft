@@ -5,6 +5,7 @@ import { HolidayCalculator } from "./components/HolidayCalculator";
 import { CountdownWidget } from "./components/CountdownWidget";
 import { WorkTimeCalculator } from "./components/WorkTimeCalculator";
 import { BatchCalculator } from "./components/BatchCalculator";
+import { SettingsPanel } from "./components/SettingsPanel";
 import type { Locale } from "./lib/messages";
 import { msg } from "./lib/messages";
 import {
@@ -12,6 +13,8 @@ import {
   loadStoredLocale,
   saveLocale,
 } from "./lib/locale-storage";
+import type { Settings } from "./lib/settings";
+import { loadSettings, saveSettings } from "./lib/settings";
 
 type Tab = "span" | "timezone" | "holidays" | "countdown" | "worktime" | "batch";
 
@@ -22,6 +25,13 @@ function htmlLang(locale: Locale): string {
 const App = () => {
   const [locale, setLocale] = useState<Locale>("en");
   const [tab, setTab] = useState<Tab>("span");
+  const [settings, setSettings] = useState<Settings>(loadSettings);
+  const [showSettings, setShowSettings] = useState(false);
+
+  const onSettingsChange = (next: Settings) => {
+    setSettings(next);
+    saveSettings(next);
+  };
 
   const applyLocale = useCallback((next: Locale) => {
     setLocale(next);
@@ -59,8 +69,16 @@ const App = () => {
 
   return (
     <div className="max-w-[580px] mx-auto p-[clamp(1rem,4vw,2.5rem)]">
-      {/* Language selector - top right */}
-      <div className="flex justify-end mb-2">
+      {/* Top bar: settings + language selector */}
+      <div className="flex justify-end items-center gap-2 mb-2">
+        <button
+          type="button"
+          onClick={() => setShowSettings(true)}
+          aria-label="Settings"
+          className="text-slate-400 hover:text-amber-400 text-lg p-1.5 rounded-lg border border-slate-700 bg-slate-800/60 cursor-pointer focus:outline-none focus:border-amber-400"
+        >
+          &#9881;
+        </button>
         <select
           id="locale"
           name="locale"
@@ -121,6 +139,16 @@ const App = () => {
       {tab === "holidays" && <HolidayCalculator locale={locale} />}
       {tab === "worktime" && <WorkTimeCalculator locale={locale} />}
       {tab === "batch" && <BatchCalculator locale={locale} />}
+
+      {/* Settings modal */}
+      {showSettings && (
+        <SettingsPanel
+          locale={locale}
+          settings={settings}
+          onChange={onSettingsChange}
+          onClose={() => setShowSettings(false)}
+        />
+      )}
     </div>
   );
 };
