@@ -20,10 +20,15 @@ type Labels = {
   overtimeThreshold: string;
   reset: string;
   close: string;
+  privacyTitle: string;
+  privacyInfo: string;
+  clearData: string;
+  clearConfirm: string;
+  privacyLink: string;
 };
 
 function labels(locale: Locale): Labels {
-  const L: Record<string, Labels> = {
+  const L: Record<string, Partial<Labels> & Pick<Labels, "title">> = {
     en: {
       title: "Settings",
       timeFormat: "Time format",
@@ -35,6 +40,11 @@ function labels(locale: Locale): Labels {
       overtimeThreshold: "Default overtime threshold (hours)",
       reset: "Reset to defaults",
       close: "Close",
+      privacyTitle: "Privacy",
+      privacyInfo: "All data stays on your device. Nothing is sent to any server.",
+      clearData: "Delete all data",
+      clearConfirm: "Delete all countdowns, custom holidays and settings?",
+      privacyLink: "View privacy policy",
     },
     nb: {
       title: "Innstillinger",
@@ -47,6 +57,11 @@ function labels(locale: Locale): Labels {
       overtimeThreshold: "Standard overtidsgrense (timer)",
       reset: "Tilbakestill",
       close: "Lukk",
+      privacyTitle: "Personvern",
+      privacyInfo: "Alle data blir på enheten din. Ingenting sendes til noen server.",
+      clearData: "Slett alle data",
+      clearConfirm: "Slett alle nedtellinger, egne fridager og innstillinger?",
+      privacyLink: "Vis personvernerklæring",
     },
     "pt-BR": {
       title: "Configurações",
@@ -59,6 +74,11 @@ function labels(locale: Locale): Labels {
       overtimeThreshold: "Limite padrão de horas extras",
       reset: "Restaurar padrões",
       close: "Fechar",
+      privacyTitle: "Privacidade",
+      privacyInfo: "Todos os dados permanecem no seu dispositivo. Nada é enviado a nenhum servidor.",
+      clearData: "Excluir todos os dados",
+      clearConfirm: "Excluir todas as contagens, feriados personalizados e configurações?",
+      privacyLink: "Ver política de privacidade",
     },
     sv: {
       title: "Inställningar",
@@ -181,7 +201,8 @@ function labels(locale: Locale): Labels {
       close: "닫기",
     },
   };
-  return L[locale] || L.en;
+  // Merge with English defaults so all locales have complete labels
+  return { ...L.en, ...(L[locale] || {}) };
 }
 
 export function SettingsPanel({ locale, settings, onChange, onClose }: Props) {
@@ -199,6 +220,14 @@ export function SettingsPanel({ locale, settings, onChange, onClose }: Props) {
       defaultCountry: "NO",
       overtimeThreshold: 7.5,
     });
+  };
+
+  const clearAllData = () => {
+    if (!confirm(L.clearConfirm)) return;
+    try {
+      localStorage.clear();
+      location.reload();
+    } catch { /* ignore */ }
   };
 
   return (
@@ -318,11 +347,38 @@ export function SettingsPanel({ locale, settings, onChange, onClose }: Props) {
             />
           </div>
 
+          {/* Privacy section */}
+          <div className="pt-4 mt-2 border-t border-slate-700">
+            <h3 className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-2">
+              {L.privacyTitle}
+            </h3>
+            <p className="text-xs text-slate-500 mb-3 leading-relaxed">
+              {L.privacyInfo}
+            </p>
+            <div className="flex flex-col gap-2">
+              <a
+                href="https://github.com/fhjona/timecraft/blob/main/privacy_policy.md"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs text-amber-400 hover:text-amber-300 underline"
+              >
+                {L.privacyLink} &#8599;
+              </a>
+              <button
+                type="button"
+                onClick={clearAllData}
+                className="text-sm py-2 px-3 rounded-lg cursor-pointer bg-transparent text-red-400 border border-red-400/30 hover:bg-red-400/10"
+              >
+                {L.clearData}
+              </button>
+            </div>
+          </div>
+
           <div className="flex gap-2 mt-2">
             <button
               type="button"
               onClick={reset}
-              className="flex-1 text-sm py-2 px-3 rounded-lg cursor-pointer bg-transparent text-red-400 border border-red-400/30 hover:bg-red-400/10"
+              className="flex-1 text-sm py-2 px-3 rounded-lg cursor-pointer bg-transparent text-slate-400 border border-slate-700 hover:bg-slate-800"
             >
               {L.reset}
             </button>
