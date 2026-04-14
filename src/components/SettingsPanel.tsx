@@ -336,7 +336,7 @@ export function SettingsPanel({ locale, settings, onChange, onClose }: Props) {
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between mb-5">
-          <h2 className="text-lg font-bold text-white">{L.title}</h2>
+          <h2 className="text-xl font-bold text-white">{L.title}</h2>
           <button
             type="button"
             onClick={onClose}
@@ -348,7 +348,7 @@ export function SettingsPanel({ locale, settings, onChange, onClose }: Props) {
 
         <div className="grid gap-4">
           <div className="flex flex-col gap-1">
-            <label className="text-xs font-medium text-slate-400">{L.timeFormat}</label>
+            <label className="text-sm font-medium text-slate-400">{L.timeFormat}</label>
             <div className="flex gap-2">
               {(["24h", "12h"] as const).map((v) => (
                 <button
@@ -368,7 +368,7 @@ export function SettingsPanel({ locale, settings, onChange, onClose }: Props) {
           </div>
 
           <div className="flex flex-col gap-1">
-            <label className="text-xs font-medium text-slate-400">{L.firstDay}</label>
+            <label className="text-sm font-medium text-slate-400">{L.firstDay}</label>
             <div className="flex gap-2">
               <button
                 type="button"
@@ -396,7 +396,7 @@ export function SettingsPanel({ locale, settings, onChange, onClose }: Props) {
           </div>
 
           <div className="flex flex-col gap-1">
-            <label htmlFor="set-date-format" className="text-xs font-medium text-slate-400">
+            <label htmlFor="set-date-format" className="text-sm font-medium text-slate-400">
               {L.dateFormat}
             </label>
             <select
@@ -412,7 +412,7 @@ export function SettingsPanel({ locale, settings, onChange, onClose }: Props) {
           </div>
 
           <div className="flex flex-col gap-1">
-            <label htmlFor="set-country" className="text-xs font-medium text-slate-400">
+            <label htmlFor="set-country" className="text-sm font-medium text-slate-400">
               {L.defaultCountry}
             </label>
             <select
@@ -428,7 +428,7 @@ export function SettingsPanel({ locale, settings, onChange, onClose }: Props) {
           </div>
 
           <div className="flex flex-col gap-1">
-            <label htmlFor="set-overtime" className="text-xs font-medium text-slate-400">
+            <label htmlFor="set-overtime" className="text-sm font-medium text-slate-400">
               {L.overtimeThreshold}
             </label>
             <input
@@ -445,7 +445,7 @@ export function SettingsPanel({ locale, settings, onChange, onClose }: Props) {
 
           {/* Display section */}
           <div className="pt-4 mt-2 border-t border-slate-700">
-            <h3 className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-3">
+            <h3 className="text-sm font-semibold uppercase tracking-widest text-slate-400 mb-3">
               {L.displayTitle}
             </h3>
             <div className="flex flex-col gap-3">
@@ -459,7 +459,7 @@ export function SettingsPanel({ locale, settings, onChange, onClose }: Props) {
                 />
               </label>
               <div className="flex flex-col gap-1">
-                <label className="text-xs font-medium text-slate-400">{L.fontSize}</label>
+                <label className="text-sm font-medium text-slate-400">{L.fontSize}</label>
                 <div className="flex gap-2">
                   {([["sm", L.fontSizeSm], ["md", L.fontSizeMd], ["lg", L.fontSizeLg]] as const).map(([v, label]) => (
                     <button
@@ -482,12 +482,12 @@ export function SettingsPanel({ locale, settings, onChange, onClose }: Props) {
 
           {/* Behavior section */}
           <div className="pt-4 mt-2 border-t border-slate-700">
-            <h3 className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-3">
+            <h3 className="text-sm font-semibold uppercase tracking-widest text-slate-400 mb-3">
               {L.behaviorTitle}
             </h3>
             <div className="flex flex-col gap-3">
               <div className="flex flex-col gap-1">
-                <label htmlFor="set-default-tab" className="text-xs font-medium text-slate-400">
+                <label htmlFor="set-default-tab" className="text-sm font-medium text-slate-400">
                   {L.defaultTab}
                 </label>
                 <select
@@ -518,7 +518,7 @@ export function SettingsPanel({ locale, settings, onChange, onClose }: Props) {
 
           {/* Backup section */}
           <div className="pt-4 mt-2 border-t border-slate-700">
-            <h3 className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-3">
+            <h3 className="text-sm font-semibold uppercase tracking-widest text-slate-400 mb-3">
               {L.backupTitle}
             </h3>
             <div className="flex gap-2">
@@ -551,10 +551,10 @@ export function SettingsPanel({ locale, settings, onChange, onClose }: Props) {
 
           {/* Privacy section */}
           <div className="pt-4 mt-2 border-t border-slate-700">
-            <h3 className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-2">
+            <h3 className="text-sm font-semibold uppercase tracking-widest text-slate-400 mb-2">
               {L.privacyTitle}
             </h3>
-            <p className="text-xs text-slate-500 mb-3 leading-relaxed">
+            <p className="text-sm text-slate-400 mb-3 leading-relaxed">
               {L.privacyInfo}
             </p>
             <div className="flex flex-col gap-2">
@@ -562,7 +562,7 @@ export function SettingsPanel({ locale, settings, onChange, onClose }: Props) {
                 href="https://github.com/fhjona/timecraft/blob/main/privacy_policy.md"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs text-amber-400 hover:text-amber-300 underline"
+                className="text-sm text-amber-400 hover:text-amber-300 underline"
               >
                 {L.privacyLink} &#8599;
               </a>
@@ -595,15 +595,15 @@ export function SettingsPanel({ locale, settings, onChange, onClose }: Props) {
 
           {/* About section */}
           <div className="pt-4 mt-2 border-t border-slate-700 text-center">
-            <h3 className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-2">
+            <h3 className="text-sm font-semibold uppercase tracking-widest text-slate-400 mb-2">
               {L.aboutTitle}
             </h3>
-            <p className="text-xs text-slate-500">
+            <p className="text-sm text-slate-400">
               <span className="text-amber-400 font-semibold">TimeCraft</span>
               {" \u00b7 "}
               {L.aboutVersion} {APP_VERSION}
             </p>
-            <p className="text-xs text-slate-600 mt-1">{L.aboutBy}</p>
+            <p className="text-sm text-slate-500 mt-1">{L.aboutBy}</p>
           </div>
         </div>
       </div>
