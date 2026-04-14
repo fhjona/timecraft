@@ -559,7 +559,7 @@ export function SettingsPanel({ locale, settings, onChange, onClose }: Props) {
             </p>
             <div className="flex flex-col gap-2">
               <a
-                href="https://github.com/fhjona/timecraft/blob/main/privacy_policy.md"
+                href="https://timecraft-six.vercel.app/privacy.html"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-sm text-amber-400 hover:text-amber-300 underline"
