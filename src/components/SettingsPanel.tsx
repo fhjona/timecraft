@@ -1,5 +1,7 @@
+import { useRef } from "react";
 import type { Locale } from "../lib/messages";
 import type { Settings } from "../lib/settings";
+import { APP_VERSION, exportData, importData } from "../lib/settings";
 import { COUNTRY_LIST } from "../lib/holidays";
 
 type Props = {
@@ -25,6 +27,24 @@ type Labels = {
   clearData: string;
   clearConfirm: string;
   privacyLink: string;
+  // New sections
+  displayTitle: string;
+  showWeekNumbers: string;
+  fontSize: string;
+  fontSizeSm: string;
+  fontSizeMd: string;
+  fontSizeLg: string;
+  behaviorTitle: string;
+  defaultTab: string;
+  countdownNotifications: string;
+  backupTitle: string;
+  exportBtn: string;
+  importBtn: string;
+  importSuccess: string;
+  importFail: string;
+  aboutTitle: string;
+  aboutVersion: string;
+  aboutBy: string;
 };
 
 function labels(locale: Locale): Labels {
@@ -45,6 +65,23 @@ function labels(locale: Locale): Labels {
       clearData: "Delete all data",
       clearConfirm: "Delete all countdowns, custom holidays and settings?",
       privacyLink: "View privacy policy",
+      displayTitle: "Display",
+      showWeekNumbers: "Show week numbers",
+      fontSize: "Font size",
+      fontSizeSm: "Small",
+      fontSizeMd: "Medium",
+      fontSizeLg: "Large",
+      behaviorTitle: "Behavior",
+      defaultTab: "Default tab on startup",
+      countdownNotifications: "Countdown notifications",
+      backupTitle: "Backup & restore",
+      exportBtn: "Export data",
+      importBtn: "Import data",
+      importSuccess: "Data imported. Reloading\u2026",
+      importFail: "Invalid backup file.",
+      aboutTitle: "About",
+      aboutVersion: "Version",
+      aboutBy: "Made by Fjona",
     },
     nb: {
       title: "Innstillinger",
@@ -62,6 +99,23 @@ function labels(locale: Locale): Labels {
       clearData: "Slett alle data",
       clearConfirm: "Slett alle nedtellinger, egne fridager og innstillinger?",
       privacyLink: "Vis personvernerklæring",
+      displayTitle: "Visning",
+      showWeekNumbers: "Vis ukenummer",
+      fontSize: "Skriftstørrelse",
+      fontSizeSm: "Liten",
+      fontSizeMd: "Medium",
+      fontSizeLg: "Stor",
+      behaviorTitle: "Oppførsel",
+      defaultTab: "Standardfane ved oppstart",
+      countdownNotifications: "Nedtellingsvarsler",
+      backupTitle: "Sikkerhetskopi",
+      exportBtn: "Eksporter data",
+      importBtn: "Importer data",
+      importSuccess: "Data importert. Laster inn på nytt\u2026",
+      importFail: "Ugyldig sikkerhetskopi.",
+      aboutTitle: "Om",
+      aboutVersion: "Versjon",
+      aboutBy: "Laget av Fjona",
     },
     "pt-BR": {
       title: "Configurações",
@@ -207,9 +261,47 @@ function labels(locale: Locale): Labels {
 
 export function SettingsPanel({ locale, settings, onChange, onClose }: Props) {
   const L = labels(locale);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const update = <K extends keyof Settings>(key: K, value: Settings[K]) => {
     onChange({ ...settings, [key]: value });
+  };
+
+  const handleExport = () => {
+    const json = exportData();
+    const blob = new Blob([json], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `timecraft-backup-${new Date().toISOString().slice(0, 10)}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
+  const handleImport = (file: File) => {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const content = e.target?.result;
+      if (typeof content !== "string") return;
+      if (importData(content)) {
+        alert(L.importSuccess);
+        location.reload();
+      } else {
+        alert(L.importFail);
+      }
+    };
+    reader.readAsText(file);
+  };
+
+  const toggleNotifications = async (enabled: boolean) => {
+    if (enabled && "Notification" in window) {
+      const result = await Notification.requestPermission();
+      if (result !== "granted") {
+        update("countdownNotifications", false);
+        return;
+      }
+    }
+    update("countdownNotifications", enabled);
   };
 
   const reset = () => {
@@ -219,6 +311,10 @@ export function SettingsPanel({ locale, settings, onChange, onClose }: Props) {
       dateFormat: "DD/MM/YYYY",
       defaultCountry: "NO",
       overtimeThreshold: 7.5,
+      showWeekNumbers: false,
+      countdownNotifications: false,
+      defaultTab: "span",
+      fontSize: "md",
     });
   };
 
@@ -347,6 +443,112 @@ export function SettingsPanel({ locale, settings, onChange, onClose }: Props) {
             />
           </div>
 
+          {/* Display section */}
+          <div className="pt-4 mt-2 border-t border-slate-700">
+            <h3 className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-3">
+              {L.displayTitle}
+            </h3>
+            <div className="flex flex-col gap-3">
+              <label className="flex items-center justify-between cursor-pointer">
+                <span className="text-sm text-slate-200">{L.showWeekNumbers}</span>
+                <input
+                  type="checkbox"
+                  checked={settings.showWeekNumbers}
+                  onChange={(e) => update("showWeekNumbers", e.target.checked)}
+                  className="w-5 h-5 accent-amber-400 cursor-pointer"
+                />
+              </label>
+              <div className="flex flex-col gap-1">
+                <label className="text-xs font-medium text-slate-400">{L.fontSize}</label>
+                <div className="flex gap-2">
+                  {([["sm", L.fontSizeSm], ["md", L.fontSizeMd], ["lg", L.fontSizeLg]] as const).map(([v, label]) => (
+                    <button
+                      key={v}
+                      type="button"
+                      onClick={() => update("fontSize", v)}
+                      className={`flex-1 text-sm py-2 px-2 rounded-lg cursor-pointer transition-all ${
+                        settings.fontSize === v
+                          ? "bg-amber-400 text-slate-950 font-semibold"
+                          : "bg-slate-800 text-slate-400 border border-slate-700 hover:text-slate-200"
+                      }`}
+                    >
+                      {label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Behavior section */}
+          <div className="pt-4 mt-2 border-t border-slate-700">
+            <h3 className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-3">
+              {L.behaviorTitle}
+            </h3>
+            <div className="flex flex-col gap-3">
+              <div className="flex flex-col gap-1">
+                <label htmlFor="set-default-tab" className="text-xs font-medium text-slate-400">
+                  {L.defaultTab}
+                </label>
+                <select
+                  id="set-default-tab"
+                  value={settings.defaultTab}
+                  onChange={(e) => update("defaultTab", e.target.value as Settings["defaultTab"])}
+                  className="font-[inherit] text-sm py-2 px-3 rounded-lg border border-slate-700 bg-slate-800 text-slate-200 cursor-pointer focus:outline-none focus:border-amber-400"
+                >
+                  <option value="span">Date span</option>
+                  <option value="timezone">Timezones</option>
+                  <option value="countdown">Countdown</option>
+                  <option value="holidays">Holidays</option>
+                  <option value="worktime">Work time</option>
+                  <option value="batch">Batch</option>
+                </select>
+              </div>
+              <label className="flex items-center justify-between cursor-pointer">
+                <span className="text-sm text-slate-200">{L.countdownNotifications}</span>
+                <input
+                  type="checkbox"
+                  checked={settings.countdownNotifications}
+                  onChange={(e) => toggleNotifications(e.target.checked)}
+                  className="w-5 h-5 accent-amber-400 cursor-pointer"
+                />
+              </label>
+            </div>
+          </div>
+
+          {/* Backup section */}
+          <div className="pt-4 mt-2 border-t border-slate-700">
+            <h3 className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-3">
+              {L.backupTitle}
+            </h3>
+            <div className="flex gap-2">
+              <button
+                type="button"
+                onClick={handleExport}
+                className="flex-1 text-sm py-2 px-3 rounded-lg cursor-pointer bg-slate-800 text-amber-400 border border-slate-700 hover:bg-slate-700"
+              >
+                {L.exportBtn}
+              </button>
+              <button
+                type="button"
+                onClick={() => fileInputRef.current?.click()}
+                className="flex-1 text-sm py-2 px-3 rounded-lg cursor-pointer bg-slate-800 text-amber-400 border border-slate-700 hover:bg-slate-700"
+              >
+                {L.importBtn}
+              </button>
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="application/json"
+                className="hidden"
+                onChange={(e) => {
+                  const file = e.target.files?.[0];
+                  if (file) handleImport(file);
+                }}
+              />
+            </div>
+          </div>
+
           {/* Privacy section */}
           <div className="pt-4 mt-2 border-t border-slate-700">
             <h3 className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-2">
@@ -389,6 +591,19 @@ export function SettingsPanel({ locale, settings, onChange, onClose }: Props) {
             >
               {L.close}
             </button>
+          </div>
+
+          {/* About section */}
+          <div className="pt-4 mt-2 border-t border-slate-700 text-center">
+            <h3 className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-2">
+              {L.aboutTitle}
+            </h3>
+            <p className="text-xs text-slate-500">
+              <span className="text-amber-400 font-semibold">TimeCraft</span>
+              {" \u00b7 "}
+              {L.aboutVersion} {APP_VERSION}
+            </p>
+            <p className="text-xs text-slate-600 mt-1">{L.aboutBy}</p>
           </div>
         </div>
       </div>

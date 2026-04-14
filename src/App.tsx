@@ -24,14 +24,20 @@ function htmlLang(locale: Locale): string {
 
 const App = () => {
   const [locale, setLocale] = useState<Locale>("en");
-  const [tab, setTab] = useState<Tab>("span");
   const [settings, setSettings] = useState<Settings>(loadSettings);
+  const [tab, setTab] = useState<Tab>(settings.defaultTab as Tab);
   const [showSettings, setShowSettings] = useState(false);
 
   const onSettingsChange = (next: Settings) => {
     setSettings(next);
     saveSettings(next);
   };
+
+  // Apply font-size to root
+  useEffect(() => {
+    const size = settings.fontSize === "sm" ? "14px" : settings.fontSize === "lg" ? "18px" : "16px";
+    document.documentElement.style.fontSize = size;
+  }, [settings.fontSize]);
 
   const applyLocale = useCallback((next: Locale) => {
     setLocale(next);
