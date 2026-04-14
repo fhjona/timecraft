@@ -57,7 +57,7 @@ Hvis vi endrer hvordan appen håndterer data, vil vi oppdatere denne erklæringe
 
 Hvis du har spørsmål om personvern i TimeCraft, ta kontakt på:
 
-**E-post:** [din-e-post]
+**E-post:** frahelge@protonmail.com
 
 ---
 
@@ -120,4 +120,4 @@ If we change how the app handles data, we will update this policy and bump the a
 
 If you have questions about privacy in TimeCraft, contact us at:
 
-**Email:** [your-email]
+**Email:** frahelge@protonmail.com
