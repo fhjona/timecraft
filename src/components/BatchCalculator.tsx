@@ -5,7 +5,7 @@ import { msg } from "../lib/messages";
 
 type Props = { locale: Locale };
 
-type OffsetUnit = "days" | "weeks" | "months" | "years";
+type OffsetUnit = "minutes" | "hours" | "days" | "weeks" | "months" | "years";
 
 type OffsetEntry = {
   id: string;
@@ -22,6 +22,12 @@ function unitLabel(locale: Locale, unit: OffsetUnit): string {
 function applyOffset(base: Date, amount: number, unit: OffsetUnit): Date {
   const d = new Date(base);
   switch (unit) {
+    case "minutes":
+      d.setMinutes(d.getMinutes() + amount);
+      break;
+    case "hours":
+      d.setHours(d.getHours() + amount);
+      break;
     case "days":
       d.setDate(d.getDate() + amount);
       break;
@@ -38,16 +44,19 @@ function applyOffset(base: Date, amount: number, unit: OffsetUnit): Date {
   return d;
 }
 
+// Formula tokens: min=minutes, h=hours, d=days, w=weeks, m=months, y=years.
+// `min` must appear before `m` in the alternation so the longer match wins.
 function parseFormula(formula: string): { amount: number; unit: OffsetUnit }[] | null {
-  // Supports: "+30d", "-2w", "+3m", "+1y", "+30d +2m"
   const parts = formula.trim().split(/\s+/);
   const result: { amount: number; unit: OffsetUnit }[] = [];
   for (const p of parts) {
-    const m = p.match(/^([+-]?\d+)(d|w|m|y)$/i);
-    if (!m) return null;
-    const amount = parseInt(m[1], 10);
-    const u = m[2].toLowerCase();
+    const match = p.match(/^([+-]?\d+)(min|h|d|w|y|m)$/i);
+    if (!match) return null;
+    const amount = parseInt(match[1], 10);
+    const u = match[2].toLowerCase();
     const unitMap: Record<string, OffsetUnit> = {
+      min: "minutes",
+      h: "hours",
       d: "days",
       w: "weeks",
       m: "months",
@@ -58,13 +67,23 @@ function parseFormula(formula: string): { amount: number; unit: OffsetUnit }[] |
   return result.length > 0 ? result : null;
 }
 
+function formatResult(d: Date, locale: Locale, showTime: boolean): string {
+  if (showTime) {
+    return d.toLocaleString(locale, {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+  }
+  return d.toLocaleDateString(locale);
+}
+
 export function BatchCalculator({ locale }: Props) {
   const m = (k: Parameters<typeof msg>[1]) => msg(locale, k);
 
-  const [baseDate, setBaseDate] = useState(() => {
-    const now = new Date();
-    return toLocalInput(now).split("T")[0];
-  });
+  const [baseDate, setBaseDate] = useState(() => toLocalInput(new Date()));
 
   const [offsets, setOffsets] = useState<OffsetEntry[]>([
     { id: "1", amount: 30, unit: "days" },
@@ -93,19 +112,20 @@ export function BatchCalculator({ locale }: Props) {
   };
 
   const calcAll = useCallback(() => {
-    const base = new Date(baseDate + "T00:00:00");
+    const base = new Date(baseDate);
     if (isNaN(base.getTime())) return;
 
     setOffsets((prev) =>
       prev.map((o) => {
         const d = applyOffset(base, o.amount, o.unit);
-        return { ...o, result: d.toLocaleDateString(locale) };
+        const showTime = o.unit === "minutes" || o.unit === "hours";
+        return { ...o, result: formatResult(d, locale, showTime) };
       }),
     );
   }, [baseDate, locale]);
 
   const runFormula = useCallback(() => {
-    const base = new Date(baseDate + "T00:00:00");
+    const base = new Date(baseDate);
     if (isNaN(base.getTime())) return;
 
     const parsed = parseFormula(formula);
@@ -118,7 +138,8 @@ export function BatchCalculator({ locale }: Props) {
     for (const p of parsed) {
       d = applyOffset(d, p.amount, p.unit);
     }
-    setFormulaResult(d.toLocaleDateString(locale));
+    const showTime = parsed.some((p) => p.unit === "minutes" || p.unit === "hours");
+    setFormulaResult(formatResult(d, locale, showTime));
   }, [baseDate, formula, locale]);
 
   const formulaPlaceholder = m("batchFormulaPlaceholder");
@@ -138,7 +159,7 @@ export function BatchCalculator({ locale }: Props) {
             {m("batchBaseDate")}
           </label>
           <input
-            type="date"
+            type="datetime-local"
             id="batch-base"
             value={baseDate}
             onChange={(e) => setBaseDate(e.target.value)}
@@ -161,7 +182,7 @@ export function BatchCalculator({ locale }: Props) {
                 onChange={(e) => updateOffset(o.id, "unit", e.target.value)}
                 className="text-sm py-1.5 px-2 rounded border border-slate-700 bg-slate-900 text-slate-200 focus:outline-none focus:border-amber-400"
               >
-                {(["days", "weeks", "months", "years"] as OffsetUnit[]).map((u) => (
+                {(["minutes", "hours", "days", "weeks", "months", "years"] as OffsetUnit[]).map((u) => (
                   <option key={u} value={u}>
                     {unitLabel(locale, u)}
                   </option>

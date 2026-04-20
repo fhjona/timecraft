@@ -78,6 +78,41 @@ const App = () => {
       {/* Banner */}
       <header className="relative mb-6 rounded-2xl overflow-hidden bg-gradient-to-br from-amber-500/10 via-orange-500/5 to-purple-500/10 border border-slate-700/60 p-5 pb-4">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_20%,rgba(251,191,36,0.08),transparent_60%)]" />
+
+        {/* Top-right controls inside banner */}
+        <div className="absolute top-3 right-3 flex items-center gap-2 z-10">
+          <select
+            id="locale"
+            name="locale"
+            aria-label={m("langLabel")}
+            value={locale}
+            onChange={(e) => applyLocale(e.target.value as Locale)}
+            className="font-[inherit] text-xs py-1 px-1.5 rounded-lg border border-slate-700 bg-slate-800/60 text-slate-400 cursor-pointer focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20"
+          >
+            <option value="en">English</option>
+            <option value="nb">Norsk</option>
+            <option value="sv">Svenska</option>
+            <option value="da">Dansk</option>
+            <option value="de">Deutsch</option>
+            <option value="fr">Fran&#231;ais</option>
+            <option value="es">Espa&#241;ol</option>
+            <option value="it">Italiano</option>
+            <option value="pt-BR">Portugu&#234;s</option>
+            <option value="pl">Polski</option>
+            <option value="tr">T&#252;rk&#231;e</option>
+            <option value="ja">&#26085;&#26412;&#35486;</option>
+            <option value="ko">&#54620;&#44397;&#50612;</option>
+          </select>
+          <button
+            type="button"
+            onClick={() => setShowSettings(true)}
+            aria-label="Settings"
+            className="text-slate-400 hover:text-amber-400 text-xl cursor-pointer focus:outline-none leading-none"
+          >
+            &#9881;
+          </button>
+        </div>
+
         <div className="relative text-center mb-3">
           <h1 className="text-2xl font-bold tracking-tight text-white mb-1">
             <span className="text-amber-400">Time</span>Craft
@@ -104,50 +139,15 @@ const App = () => {
         </nav>
       </header>
 
-      {/* Tab content with floating controls */}
-      <div className="relative">
-        {/* Controls positioned right of the tab title */}
-        <div className="absolute top-0 right-0 flex items-center gap-2 z-10">
-          <button
-            type="button"
-            onClick={() => setShowSettings(true)}
-            aria-label="Settings"
-            className="text-slate-400 hover:text-amber-400 text-xl cursor-pointer focus:outline-none"
-          >
-            &#9881;
-          </button>
-          <select
-            id="locale"
-            name="locale"
-            aria-label={m("langLabel")}
-            value={locale}
-            onChange={(e) => applyLocale(e.target.value as Locale)}
-            className="font-[inherit] text-xs py-1 px-1.5 rounded-lg border border-slate-700 bg-slate-800/60 text-slate-400 cursor-pointer focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20"
-          >
-            <option value="en">English</option>
-            <option value="nb">Norsk</option>
-            <option value="sv">Svenska</option>
-            <option value="da">Dansk</option>
-            <option value="de">Deutsch</option>
-            <option value="fr">Fran&#231;ais</option>
-            <option value="es">Espa&#241;ol</option>
-            <option value="it">Italiano</option>
-            <option value="pt-BR">Portugu&#234;s</option>
-            <option value="pl">Polski</option>
-            <option value="tr">T&#252;rk&#231;e</option>
-            <option value="ja">&#26085;&#26412;&#35486;</option>
-            <option value="ko">&#54620;&#44397;&#50612;</option>
-          </select>
-        </div>
-
+      {/* Tab content */}
+      <div>
         {tab === "span" && <DateSpanCalculator locale={locale} />}
         {tab === "timezone" && <TimezoneConverter locale={locale} />}
         {tab === "countdown" && <CountdownWidget locale={locale} />}
-        {tab === "holidays" && <HolidayCalculator locale={locale} />}
+        {tab === "holidays" && <HolidayCalculator locale={locale} defaultCountry={settings.defaultCountry} />}
         {tab === "worktime" && <WorkTimeCalculator locale={locale} />}
         {tab === "batch" && <BatchCalculator locale={locale} />}
       </div>
-
       {/* Settings modal */}
       {showSettings && (
         <SettingsPanel

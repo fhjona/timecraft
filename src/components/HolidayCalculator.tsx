@@ -4,14 +4,14 @@ import { calcBusinessDays, COUNTRY_LIST } from "../lib/holidays";
 import type { Locale } from "../lib/messages";
 import { msg } from "../lib/messages";
 
-type Props = { locale: Locale };
+type Props = { locale: Locale; defaultCountry: HolidayCountry };
 
-export function HolidayCalculator({ locale }: Props) {
+export function HolidayCalculator({ locale, defaultCountry }: Props) {
   const m = (k: Parameters<typeof msg>[1]) => msg(locale, k);
   const now = new Date();
   const year = now.getFullYear();
 
-  const [country, setCountry] = useState<HolidayCountry>("BR");
+  const [country, setCountry] = useState<HolidayCountry>(defaultCountry);
   const [selectedYear, setSelectedYear] = useState(year);
   const [from, setFrom] = useState(`${year}-01-01`);
   const [to, setTo] = useState(`${year}-12-31`);
