@@ -18,19 +18,28 @@ type DayEntry = {
   label: string;
   startTime: string;
   endTime: string;
-  breakMinutes: number;
+  // Stored as string so the input can be truly empty while typing.
+  // Parsed via numOrZero() before passing to calc functions.
+  breakMinutes: string;
+};
+
+// Empty/invalid input is treated as 0, letting the user clear the field
+// without it auto-resetting to "0".
+const numOrZero = (s: string): number => {
+  const n = parseFloat(s);
+  return isNaN(n) ? 0 : n;
 };
 
 export function WorkTimeCalculator({ locale }: Props) {
   const m = (k: Parameters<typeof msg>[1]) => msg(locale, k);
   const days = WEEKDAYS[locale] || WEEKDAYS.en;
 
-  const [threshold, setThreshold] = useState(7.5);
+  const [threshold, setThreshold] = useState("7.5");
   const [entries, setEntries] = useState<DayEntry[]>([
-    { id: "1", label: days[0], startTime: "08:00", endTime: "16:00", breakMinutes: 30 },
+    { id: "1", label: days[0], startTime: "08:00", endTime: "16:00", breakMinutes: "30" },
   ]);
 
-  const updateEntry = (id: string, field: keyof DayEntry, value: string | number) => {
+  const updateEntry = (id: string, field: keyof DayEntry, value: string) => {
     setEntries((prev) =>
       prev.map((e) => (e.id === id ? { ...e, [field]: value } : e)),
     );
@@ -45,7 +54,7 @@ export function WorkTimeCalculator({ locale }: Props) {
         label: days[idx],
         startTime: "08:00",
         endTime: "16:00",
-        breakMinutes: 30,
+        breakMinutes: "30",
       },
     ]);
   };
@@ -54,13 +63,14 @@ export function WorkTimeCalculator({ locale }: Props) {
     setEntries((prev) => prev.filter((e) => e.id !== id));
   };
 
+  const thresholdNum = numOrZero(threshold);
   const summary = calcWeekSummary(
     entries.map((e) => ({
       label: e.label,
       startTime: e.startTime,
       endTime: e.endTime,
-      breakMinutes: e.breakMinutes,
-      overtimeThresholdHours: threshold,
+      breakMinutes: numOrZero(e.breakMinutes),
+      overtimeThresholdHours: thresholdNum,
     })),
   );
 
@@ -80,7 +90,7 @@ export function WorkTimeCalculator({ locale }: Props) {
             min="0"
             max="24"
             value={threshold}
-            onChange={(e) => setThreshold(+e.target.value)}
+            onChange={(e) => setThreshold(e.target.value)}
             className="w-20 font-mono text-sm py-2 px-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-200 focus:outline-none focus:border-amber-400"
           />
         </div>
@@ -90,8 +100,8 @@ export function WorkTimeCalculator({ locale }: Props) {
             const r = calcWorkTime({
               startTime: entry.startTime,
               endTime: entry.endTime,
-              breakMinutes: entry.breakMinutes,
-              overtimeThresholdHours: threshold,
+              breakMinutes: numOrZero(entry.breakMinutes),
+              overtimeThresholdHours: thresholdNum,
             });
             return (
               <div
@@ -122,7 +132,7 @@ export function WorkTimeCalculator({ locale }: Props) {
                     type="number"
                     min="0"
                     value={entry.breakMinutes}
-                    onChange={(e) => updateEntry(entry.id, "breakMinutes", +e.target.value)}
+                    onChange={(e) => updateEntry(entry.id, "breakMinutes", e.target.value)}
                     className="w-16 font-mono text-sm py-1 px-2 rounded border border-slate-300 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-200 focus:outline-none focus:border-amber-400"
                     title={m("wtBreak")}
                   />

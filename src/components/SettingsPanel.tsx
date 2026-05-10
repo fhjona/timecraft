@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import type { Locale } from "../lib/messages";
 import { msg } from "../lib/messages";
 import type { Settings } from "../lib/settings";
@@ -288,8 +288,19 @@ export function SettingsPanel({ locale, settings, onChange, onClose }: Props) {
   const L = labels(locale);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
+  // Mirror the overtimeThreshold as a string while editing so the input can be
+  // truly empty without auto-resetting to "0". Parse on every change; empty
+  // input is treated as 0 (no overtime).
+  const [overtimeInput, setOvertimeInput] = useState(String(settings.overtimeThreshold));
+
   const update = <K extends keyof Settings>(key: K, value: Settings[K]) => {
     onChange({ ...settings, [key]: value });
+  };
+
+  const onOvertimeChange = (raw: string) => {
+    setOvertimeInput(raw);
+    const n = parseFloat(raw);
+    update("overtimeThreshold", isNaN(n) ? 0 : n);
   };
 
   const handleExport = () => {
@@ -330,6 +341,7 @@ export function SettingsPanel({ locale, settings, onChange, onClose }: Props) {
   };
 
   const reset = () => {
+    setOvertimeInput("7.5");
     onChange({
       timeFormat: "24h",
       firstDayOfWeek: "mon",
@@ -463,8 +475,8 @@ export function SettingsPanel({ locale, settings, onChange, onClose }: Props) {
               step="0.5"
               min="0"
               max="24"
-              value={settings.overtimeThreshold}
-              onChange={(e) => update("overtimeThreshold", +e.target.value)}
+              value={overtimeInput}
+              onChange={(e) => onOvertimeChange(e.target.value)}
               className="font-mono text-sm py-2 px-3 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-200 focus:outline-none focus:border-amber-400"
             />
           </div>
