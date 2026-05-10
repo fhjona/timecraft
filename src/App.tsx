@@ -39,6 +39,24 @@ const App = () => {
     document.documentElement.style.fontSize = size;
   }, [settings.fontSize]);
 
+  // Apply theme: write .light or .dark on <html>. When "system", follow the OS
+  // preference and re-apply when it changes.
+  useEffect(() => {
+    const root = document.documentElement;
+    const apply = (mode: "light" | "dark") => {
+      root.classList.remove("light", "dark");
+      root.classList.add(mode);
+    };
+    if (settings.theme === "system") {
+      const mq = window.matchMedia("(prefers-color-scheme: dark)");
+      apply(mq.matches ? "dark" : "light");
+      const onChange = (e: MediaQueryListEvent) => apply(e.matches ? "dark" : "light");
+      mq.addEventListener("change", onChange);
+      return () => mq.removeEventListener("change", onChange);
+    }
+    apply(settings.theme);
+  }, [settings.theme]);
+
   const applyLocale = useCallback((next: Locale) => {
     setLocale(next);
     saveLocale(next);
