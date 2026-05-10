@@ -13,6 +13,13 @@ html, body, #root {
 
 body {
   margin: 0;
+  /* Safe-area insets push content below the status bar / above the navigation bar
+     on Android 15+ edge-to-edge and iOS notched devices. viewport-fit=cover in
+     index.html is what exposes these env() values. */
+  padding-top: env(safe-area-inset-top);
+  padding-right: env(safe-area-inset-right);
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-left: env(safe-area-inset-left);
   background: #0d0f14;
   background-image:
     radial-gradient(ellipse 80% 50% at 50% -20%, rgba(255, 140, 50, 0.12), transparent),
