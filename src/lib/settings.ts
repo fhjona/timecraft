@@ -7,6 +7,7 @@ export type FirstDayOfWeek = "mon" | "sun";
 export type DateFormat = "DD/MM/YYYY" | "MM/DD/YYYY" | "YYYY-MM-DD";
 export type FontSize = "sm" | "md" | "lg";
 export type DefaultTab = "span" | "timezone" | "countdown" | "holidays" | "worktime" | "batch";
+export type Theme = "light" | "dark" | "system";
 
 export type Settings = {
   timeFormat: TimeFormat;
@@ -18,6 +19,7 @@ export type Settings = {
   countdownNotifications: boolean;
   defaultTab: DefaultTab;
   fontSize: FontSize;
+  theme: Theme;
 };
 
 export const APP_VERSION = "1.3";
@@ -34,6 +36,7 @@ export const DEFAULT_SETTINGS: Settings = {
   countdownNotifications: false,
   defaultTab: "span",
   fontSize: "md",
+  theme: "system",
 };
 
 export function exportData(): string {

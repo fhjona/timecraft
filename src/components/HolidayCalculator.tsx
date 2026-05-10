@@ -44,19 +44,19 @@ export function HolidayCalculator({ locale, defaultCountry }: Props) {
       <h2 className="text-[clamp(1.3rem,3.5vw,1.6rem)] font-bold tracking-tight mb-1">
         {m("holTitle")}
       </h2>
-      <p className="text-slate-400 text-[0.95rem] mb-6">{m("holLede")}</p>
+      <p className="text-slate-600 dark:text-slate-400 text-[0.95rem] mb-6">{m("holLede")}</p>
 
-      <div className="bg-slate-800/80 border border-slate-700 rounded-xl p-6 shadow-2xl">
+      <div className="bg-slate-100/80 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl p-6 shadow-2xl">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
           <div className="flex flex-col gap-1">
-            <label htmlFor="hol-country" className="text-sm font-medium text-slate-200">
+            <label htmlFor="hol-country" className="text-sm font-medium text-slate-900 dark:text-slate-200">
               {m("holCountry")}
             </label>
             <select
               id="hol-country"
               value={country}
               onChange={(e) => setCountry(e.target.value as HolidayCountry)}
-              className="font-[inherit] text-sm py-2.5 px-3 rounded-lg border border-slate-700 bg-slate-900 text-slate-200 focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20"
+              className="font-[inherit] text-sm py-2.5 px-3 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-200 focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20"
             >
               {COUNTRY_LIST.map((c) => (
                 <option key={c.code} value={c.code}>{c.name}</option>
@@ -64,7 +64,7 @@ export function HolidayCalculator({ locale, defaultCountry }: Props) {
             </select>
           </div>
           <div className="flex flex-col gap-1">
-            <label htmlFor="hol-year" className="text-sm font-medium text-slate-200">
+            <label htmlFor="hol-year" className="text-sm font-medium text-slate-900 dark:text-slate-200">
               {m("holYear")}
             </label>
             <select
@@ -76,7 +76,7 @@ export function HolidayCalculator({ locale, defaultCountry }: Props) {
                 setFrom(`${y}-01-01`);
                 setTo(`${y}-12-31`);
               }}
-              className="w-full font-[inherit] text-sm py-2.5 px-3 rounded-lg border border-slate-700 bg-slate-900 text-slate-200 cursor-pointer focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20"
+              className="w-full font-[inherit] text-sm py-2.5 px-3 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-200 cursor-pointer focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20"
             >
               {Array.from({ length: 21 }, (_, i) => year - 5 + i).map((y) => (
                 <option key={y} value={y}>{y}</option>
@@ -87,7 +87,7 @@ export function HolidayCalculator({ locale, defaultCountry }: Props) {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
           <div className="flex flex-col gap-1">
-            <label htmlFor="hol-from" className="text-sm font-medium text-slate-200">
+            <label htmlFor="hol-from" className="text-sm font-medium text-slate-900 dark:text-slate-200">
               {m("holFrom")}
             </label>
             <input
@@ -95,11 +95,11 @@ export function HolidayCalculator({ locale, defaultCountry }: Props) {
               id="hol-from"
               value={from}
               onChange={(e) => setFrom(e.target.value)}
-              className="w-full font-mono text-sm py-2.5 px-3 rounded-lg border border-slate-700 bg-slate-900 text-slate-200 focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20"
+              className="w-full font-mono text-sm py-2.5 px-3 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-200 focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20"
             />
           </div>
           <div className="flex flex-col gap-1">
-            <label htmlFor="hol-to" className="text-sm font-medium text-slate-200">
+            <label htmlFor="hol-to" className="text-sm font-medium text-slate-900 dark:text-slate-200">
               {m("holTo")}
             </label>
             <input
@@ -107,14 +107,14 @@ export function HolidayCalculator({ locale, defaultCountry }: Props) {
               id="hol-to"
               value={to}
               onChange={(e) => setTo(e.target.value)}
-              className="w-full font-mono text-sm py-2.5 px-3 rounded-lg border border-slate-700 bg-slate-900 text-slate-200 focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20"
+              className="w-full font-mono text-sm py-2.5 px-3 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-200 focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20"
             />
           </div>
         </div>
 
         {/* Custom holidays */}
-        <div className="mb-4 p-3 bg-slate-900/50 rounded-lg border border-slate-700">
-          <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-2">
+        <div className="mb-4 p-3 bg-white/50 dark:bg-slate-900/50 rounded-lg border border-slate-300 dark:border-slate-700">
+          <p className="text-xs font-semibold uppercase tracking-widest text-slate-600 dark:text-slate-400 mb-2">
             {m("holCustomTitle")}
           </p>
           <div className="flex flex-wrap gap-2 mb-2">
@@ -122,19 +122,19 @@ export function HolidayCalculator({ locale, defaultCountry }: Props) {
               type="date"
               value={newCustomDate}
               onChange={(e) => setNewCustomDate(e.target.value)}
-              className="text-sm py-1.5 px-2 rounded border border-slate-700 bg-slate-900 text-slate-200 focus:outline-none focus:border-amber-400"
+              className="text-sm py-1.5 px-2 rounded border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-200 focus:outline-none focus:border-amber-400"
             />
             <input
               type="text"
               placeholder={m("holCustomName")}
               value={newCustomName}
               onChange={(e) => setNewCustomName(e.target.value)}
-              className="text-sm py-1.5 px-2 rounded border border-slate-700 bg-slate-900 text-slate-200 flex-1 min-w-[8rem] focus:outline-none focus:border-amber-400"
+              className="text-sm py-1.5 px-2 rounded border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-200 flex-1 min-w-[8rem] focus:outline-none focus:border-amber-400"
             />
             <button
               type="button"
               onClick={addCustom}
-              className="text-sm py-1.5 px-3 rounded bg-emerald-600 text-white font-medium cursor-pointer hover:bg-emerald-500"
+              className="text-sm py-1.5 px-3 rounded bg-emerald-600 text-slate-900 dark:text-white font-medium cursor-pointer hover:bg-emerald-500"
             >
               +
             </button>
@@ -144,7 +144,7 @@ export function HolidayCalculator({ locale, defaultCountry }: Props) {
               {customHolidays.map((h, i) => (
                 <span
                   key={i}
-                  className="inline-flex items-center gap-1 text-xs bg-slate-800 border border-slate-600 rounded-full py-0.5 px-2 text-slate-300"
+                  className="inline-flex items-center gap-1 text-xs bg-slate-100 dark:bg-slate-800 border border-slate-400 dark:border-slate-600 rounded-full py-0.5 px-2 text-slate-700 dark:text-slate-300"
                 >
                   {h.date} {h.name}
                   <button
@@ -169,8 +169,8 @@ export function HolidayCalculator({ locale, defaultCountry }: Props) {
         </button>
 
         {result && (
-          <div className="mt-6 pt-5 border-t border-slate-700">
-            <h3 className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-3">
+          <div className="mt-6 pt-5 border-t border-slate-300 dark:border-slate-700">
+            <h3 className="text-xs font-semibold uppercase tracking-widest text-slate-600 dark:text-slate-400 mb-3">
               {m("resultHeading")}
             </h3>
             <div className="grid gap-2.5 mb-4">
@@ -183,10 +183,10 @@ export function HolidayCalculator({ locale, defaultCountry }: Props) {
                 <div
                   key={row.label}
                   className={`flex justify-between items-baseline gap-4 py-2 text-[0.95rem] ${
-                    i < arr.length - 1 ? "border-b border-slate-700" : ""
+                    i < arr.length - 1 ? "border-b border-slate-300 dark:border-slate-700" : ""
                   }`}
                 >
-                  <span className="text-slate-400">{row.label}</span>
+                  <span className="text-slate-600 dark:text-slate-400">{row.label}</span>
                   <strong className="font-mono font-medium text-sm">{row.value}</strong>
                 </div>
               ))}
@@ -194,23 +194,23 @@ export function HolidayCalculator({ locale, defaultCountry }: Props) {
 
             {result.holidays.length > 0 ? (
               <div>
-                <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-2">
+                <p className="text-xs font-semibold uppercase tracking-widest text-slate-600 dark:text-slate-400 mb-2">
                   {m("holHolidayList")}
                 </p>
                 <div className="grid gap-1">
                   {result.holidays.map((h, i) => (
                     <div
                       key={i}
-                      className="flex justify-between text-sm py-1 text-slate-300"
+                      className="flex justify-between text-sm py-1 text-slate-700 dark:text-slate-300"
                     >
-                      <span className="font-mono text-slate-400">{h.date}</span>
+                      <span className="font-mono text-slate-600 dark:text-slate-400">{h.date}</span>
                       <span>{h.name}</span>
                     </div>
                   ))}
                 </div>
               </div>
             ) : (
-              <p className="text-slate-400 text-sm">{m("holNoHolidays")}</p>
+              <p className="text-slate-600 dark:text-slate-400 text-sm">{m("holNoHolidays")}</p>
             )}
           </div>
         )}

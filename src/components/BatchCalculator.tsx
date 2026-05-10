@@ -151,11 +151,11 @@ export function BatchCalculator({ locale }: Props) {
       <h2 className="text-[clamp(1.3rem,3.5vw,1.6rem)] font-bold tracking-tight mb-1">
         {m("batchTitle")}
       </h2>
-      <p className="text-slate-400 text-[0.95rem] mb-6">{m("batchLede")}</p>
+      <p className="text-slate-600 dark:text-slate-400 text-[0.95rem] mb-6">{m("batchLede")}</p>
 
-      <div className="bg-slate-800/80 border border-slate-700 rounded-xl p-6 shadow-2xl">
+      <div className="bg-slate-100/80 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl p-6 shadow-2xl">
         <div className="flex flex-col gap-1 mb-5">
-          <label htmlFor="batch-base" className="text-sm font-medium text-slate-200">
+          <label htmlFor="batch-base" className="text-sm font-medium text-slate-900 dark:text-slate-200">
             {m("batchBaseDate")}
           </label>
           <input
@@ -163,7 +163,7 @@ export function BatchCalculator({ locale }: Props) {
             id="batch-base"
             value={baseDate}
             onChange={(e) => setBaseDate(e.target.value)}
-            className="w-full font-mono text-sm py-2.5 px-3 rounded-lg border border-slate-700 bg-slate-900 text-slate-200 focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20"
+            className="w-full font-mono text-sm py-2.5 px-3 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-200 focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20"
           />
         </div>
 
@@ -175,12 +175,12 @@ export function BatchCalculator({ locale }: Props) {
                 type="number"
                 value={o.amount}
                 onChange={(e) => updateOffset(o.id, "amount", +e.target.value)}
-                className="w-20 font-mono text-sm py-1.5 px-2 rounded border border-slate-700 bg-slate-900 text-slate-200 focus:outline-none focus:border-amber-400"
+                className="w-20 font-mono text-sm py-1.5 px-2 rounded border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-200 focus:outline-none focus:border-amber-400"
               />
               <select
                 value={o.unit}
                 onChange={(e) => updateOffset(o.id, "unit", e.target.value)}
-                className="text-sm py-1.5 px-2 rounded border border-slate-700 bg-slate-900 text-slate-200 focus:outline-none focus:border-amber-400"
+                className="text-sm py-1.5 px-2 rounded border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-200 focus:outline-none focus:border-amber-400"
               >
                 {(["minutes", "hours", "days", "weeks", "months", "years"] as OffsetUnit[]).map((u) => (
                   <option key={u} value={u}>
@@ -208,7 +208,7 @@ export function BatchCalculator({ locale }: Props) {
           <button
             type="button"
             onClick={addOffset}
-            className="text-sm py-2 px-3.5 rounded-lg cursor-pointer bg-transparent text-amber-400 border border-slate-700 hover:bg-amber-400/10"
+            className="text-sm py-2 px-3.5 rounded-lg cursor-pointer bg-transparent text-amber-400 border border-slate-300 dark:border-slate-700 hover:bg-amber-400/10"
           >
             {m("batchAddOffset")}
           </button>
@@ -222,11 +222,11 @@ export function BatchCalculator({ locale }: Props) {
         </div>
 
         {/* Formula mode */}
-        <div className="pt-5 border-t border-slate-700">
-          <h3 className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-2">
+        <div className="pt-5 border-t border-slate-300 dark:border-slate-700">
+          <h3 className="text-xs font-semibold uppercase tracking-widest text-slate-600 dark:text-slate-400 mb-2">
             {formulaLabel}
           </h3>
-          <p className="text-xs text-slate-500 mb-3">{formulaHelp}</p>
+          <p className="text-xs text-slate-500 dark:text-slate-500 mb-3">{formulaHelp}</p>
           <div className="flex flex-wrap gap-2">
             <input
               type="text"
@@ -236,7 +236,7 @@ export function BatchCalculator({ locale }: Props) {
               onKeyDown={(e) => {
                 if (e.key === "Enter") runFormula();
               }}
-              className="flex-1 min-w-[12rem] font-mono text-sm py-2 px-3 rounded-lg border border-slate-700 bg-slate-900 text-slate-200 focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20"
+              className="flex-1 min-w-[12rem] font-mono text-sm py-2 px-3 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-200 focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20"
             />
             <button
               type="button"

@@ -75,9 +75,9 @@ export function CountdownWidget({ locale }: Props) {
       <h2 className="text-[clamp(1.3rem,3.5vw,1.6rem)] font-bold tracking-tight mb-1">
         {m("cdTitle")}
       </h2>
-      <p className="text-slate-400 text-[0.95rem] mb-6">{m("cdLede")}</p>
+      <p className="text-slate-600 dark:text-slate-400 text-[0.95rem] mb-6">{m("cdLede")}</p>
 
-      <div className="bg-slate-800/80 border border-slate-700 rounded-xl p-6 shadow-2xl">
+      <div className="bg-slate-100/80 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl p-6 shadow-2xl">
         {/* Add form */}
         <div className="flex flex-wrap gap-2 mb-6">
           <input
@@ -85,13 +85,13 @@ export function CountdownWidget({ locale }: Props) {
             placeholder={m("cdNamePlaceholder")}
             value={newName}
             onChange={(e) => setNewName(e.target.value)}
-            className="flex-1 min-w-[10rem] text-sm py-2 px-3 rounded-lg border border-slate-700 bg-slate-900 text-slate-200 focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20"
+            className="flex-1 min-w-[10rem] text-sm py-2 px-3 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-200 focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20"
           />
           <input
             type="datetime-local"
             value={newTarget}
             onChange={(e) => setNewTarget(e.target.value)}
-            className="font-mono text-sm py-2 px-3 rounded-lg border border-slate-700 bg-slate-900 text-slate-200 focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20"
+            className="font-mono text-sm py-2 px-3 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-200 focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20"
           />
           <button
             type="button"
@@ -104,7 +104,7 @@ export function CountdownWidget({ locale }: Props) {
 
         {/* Countdown cards */}
         {items.length === 0 ? (
-          <p className="text-slate-400 text-sm">{m("cdNoItems")}</p>
+          <p className="text-slate-600 dark:text-slate-400 text-sm">{m("cdNoItems")}</p>
         ) : (
           <div className="grid gap-3">
             {items.map((item) => {
@@ -113,12 +113,12 @@ export function CountdownWidget({ locale }: Props) {
               return (
                 <div
                   key={item.id}
-                  className="bg-slate-900/60 border border-slate-700 rounded-lg p-4"
+                  className="bg-white/60 dark:bg-slate-900/60 border border-slate-300 dark:border-slate-700 rounded-lg p-4"
                 >
                   <div className="flex justify-between items-start mb-2">
                     <div>
-                      <h3 className="font-semibold text-slate-200">{item.name}</h3>
-                      <p className="text-xs text-slate-500 font-mono">
+                      <h3 className="font-semibold text-slate-900 dark:text-slate-200">{item.name}</h3>
+                      <p className="text-xs text-slate-500 dark:text-slate-500 font-mono">
                         {targetDate.toLocaleString(locale)}
                       </p>
                     </div>
@@ -140,12 +140,12 @@ export function CountdownWidget({ locale }: Props) {
                         <span className="text-2xl font-bold text-amber-400 font-mono">
                           {diff.days}
                         </span>
-                        <span className="text-sm text-slate-400">
+                        <span className="text-sm text-slate-600 dark:text-slate-400">
                           {diff.isPast ? m("cdDaysAgo") : m("cdDaysLeft")}
                         </span>
                       </>
                     )}
-                    <span className="text-sm font-mono text-slate-500">
+                    <span className="text-sm font-mono text-slate-500 dark:text-slate-500">
                       {String(diff.hours).padStart(2, "0")}
                       {m("cdHoursShort")}{" "}
                       {String(diff.minutes).padStart(2, "0")}
@@ -156,7 +156,7 @@ export function CountdownWidget({ locale }: Props) {
                   </div>
                   {/* Progress bar */}
                   {!diff.isPast && (
-                    <div className="mt-3 h-1.5 bg-slate-700 rounded-full overflow-hidden">
+                    <div className="mt-3 h-1.5 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
                       <div
                         className="h-full bg-gradient-to-r from-amber-500 to-orange-400 rounded-full transition-all duration-1000"
                         style={{

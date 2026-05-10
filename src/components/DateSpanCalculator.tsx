@@ -75,9 +75,9 @@ export function DateSpanCalculator({ locale }: Props) {
       <h2 className="text-[clamp(1.3rem,3.5vw,1.6rem)] font-bold tracking-tight mb-1">
         {m("title")}
       </h2>
-      <p className="text-slate-400 text-[0.95rem] mb-6">{m("lede")}</p>
+      <p className="text-slate-600 dark:text-slate-400 text-[0.95rem] mb-6">{m("lede")}</p>
 
-      <div className="bg-slate-800/80 border border-slate-700 rounded-xl p-6 shadow-2xl">
+      <div className="bg-slate-100/80 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl p-6 shadow-2xl">
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -85,12 +85,12 @@ export function DateSpanCalculator({ locale }: Props) {
           }}
         >
           <fieldset className="border-none m-0 p-0">
-            <legend className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-2">
+            <legend className="text-xs font-semibold uppercase tracking-widest text-slate-600 dark:text-slate-400 mb-2">
               {m("legend")}
             </legend>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
               <div className="flex flex-col gap-1">
-                <label htmlFor="start" className="text-sm font-medium text-slate-200">
+                <label htmlFor="start" className="text-sm font-medium text-slate-900 dark:text-slate-200">
                   {m("labelStart")}
                 </label>
                 <input
@@ -100,11 +100,11 @@ export function DateSpanCalculator({ locale }: Props) {
                   required
                   value={start}
                   onChange={(e) => setStart(e.target.value)}
-                  className="w-full font-mono text-sm py-2.5 px-3 rounded-lg border border-slate-700 bg-slate-900 text-slate-200 focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20"
+                  className="w-full font-mono text-sm py-2.5 px-3 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-200 focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20"
                 />
               </div>
               <div className="flex flex-col gap-1">
-                <label htmlFor="end" className="text-sm font-medium text-slate-200">
+                <label htmlFor="end" className="text-sm font-medium text-slate-900 dark:text-slate-200">
                   {m("labelEnd")}
                 </label>
                 <input
@@ -114,7 +114,7 @@ export function DateSpanCalculator({ locale }: Props) {
                   required
                   value={end}
                   onChange={(e) => setEnd(e.target.value)}
-                  className="w-full font-mono text-sm py-2.5 px-3 rounded-lg border border-slate-700 bg-slate-900 text-slate-200 focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20"
+                  className="w-full font-mono text-sm py-2.5 px-3 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-200 focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20"
                 />
               </div>
             </div>
@@ -129,7 +129,7 @@ export function DateSpanCalculator({ locale }: Props) {
             <button
               type="button"
               onClick={onSwap}
-              className="font-semibold text-sm py-2 px-3.5 rounded-lg cursor-pointer bg-transparent text-amber-400 border border-slate-700 hover:bg-amber-400/10 focus-visible:outline-2 focus-visible:outline-amber-400 focus-visible:outline-offset-2"
+              className="font-semibold text-sm py-2 px-3.5 rounded-lg cursor-pointer bg-transparent text-amber-400 border border-slate-300 dark:border-slate-700 hover:bg-amber-400/10 focus-visible:outline-2 focus-visible:outline-amber-400 focus-visible:outline-offset-2"
             >
               {m("btnSwap")}
             </button>
@@ -137,8 +137,8 @@ export function DateSpanCalculator({ locale }: Props) {
         </form>
 
         {showResults && stats && (
-          <div className="mt-7 pt-6 border-t border-slate-700">
-            <h2 className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-4">
+          <div className="mt-7 pt-6 border-t border-slate-300 dark:border-slate-700">
+            <h2 className="text-xs font-semibold uppercase tracking-widest text-slate-600 dark:text-slate-400 mb-4">
               {m("resultHeading")}
             </h2>
             <p className="inline-flex items-center gap-1.5 text-xs text-emerald-400 bg-emerald-400/10 border border-emerald-400/25 py-1 px-2.5 rounded-full mb-4">
@@ -155,10 +155,10 @@ export function DateSpanCalculator({ locale }: Props) {
                 <div
                   key={row.label}
                   className={`flex justify-between items-baseline gap-4 py-2 text-[0.95rem] ${
-                    i < arr.length - 1 ? "border-b border-slate-700" : ""
+                    i < arr.length - 1 ? "border-b border-slate-300 dark:border-slate-700" : ""
                   }`}
                 >
-                  <span className="text-slate-400">{row.label}</span>
+                  <span className="text-slate-600 dark:text-slate-400">{row.label}</span>
                   <strong className="font-mono font-medium text-sm text-right">
                     {row.value}
                   </strong>
@@ -169,7 +169,7 @@ export function DateSpanCalculator({ locale }: Props) {
         )}
 
         {!showResults && !hasError && (
-          <p className="text-slate-400 text-sm mt-4">{m("placeholder")}</p>
+          <p className="text-slate-600 dark:text-slate-400 text-sm mt-4">{m("placeholder")}</p>
         )}
         {hasError && (
           <p className="text-red-300 text-sm mt-3">{m("errNeedBoth")}</p>

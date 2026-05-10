@@ -49,14 +49,14 @@ export function TimezoneConverter({ locale }: Props) {
     onChange: (v: string) => void,
   ) => (
     <div className="flex flex-col gap-1">
-      <label htmlFor={id} className="text-sm font-medium text-slate-200">
+      <label htmlFor={id} className="text-sm font-medium text-slate-900 dark:text-slate-200">
         {label}
       </label>
       <select
         id={id}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="font-[inherit] text-sm py-2.5 px-3 rounded-lg border border-slate-700 bg-slate-900 text-slate-200 focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20"
+        className="font-[inherit] text-sm py-2.5 px-3 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-200 focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20"
       >
         {TIMEZONE_LIST.map((group) => (
           <optgroup key={group.label} label={group.label}>
@@ -76,19 +76,19 @@ export function TimezoneConverter({ locale }: Props) {
       <h2 className="text-[clamp(1.3rem,3.5vw,1.6rem)] font-bold tracking-tight mb-1">
         {m("tzTitle")}
       </h2>
-      <p className="text-slate-400 text-[0.95rem] mb-6">{m("tzLede")}</p>
+      <p className="text-slate-600 dark:text-slate-400 text-[0.95rem] mb-6">{m("tzLede")}</p>
 
-      <div className="bg-slate-800/80 border border-slate-700 rounded-xl p-6 shadow-2xl">
+      <div className="bg-slate-100/80 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl p-6 shadow-2xl">
         <div className="mb-4">
           <input
             type="text"
             placeholder={m("tzSearchPlaceholder")}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full text-sm py-2 px-3 rounded-lg border border-slate-700 bg-slate-900 text-slate-200 focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20"
+            className="w-full text-sm py-2 px-3 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-200 focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20"
           />
           {filteredZones && filteredZones.length > 0 && (
-            <div className="mt-1 max-h-32 overflow-y-auto bg-slate-900 border border-slate-700 rounded-lg">
+            <div className="mt-1 max-h-32 overflow-y-auto bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg">
               {filteredZones.slice(0, 10).map((z) => (
                 <button
                   key={z}
@@ -97,7 +97,7 @@ export function TimezoneConverter({ locale }: Props) {
                     setFromTz(z);
                     setSearch("");
                   }}
-                  className="block w-full text-left text-sm py-1.5 px-3 text-slate-300 hover:bg-slate-800 cursor-pointer"
+                  className="block w-full text-left text-sm py-1.5 px-3 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer"
                 >
                   {friendlyTzName(z)}
                 </button>
@@ -114,7 +114,7 @@ export function TimezoneConverter({ locale }: Props) {
         <div className="flex flex-col gap-1 mb-4">
           <label
             htmlFor="tz-dt"
-            className="text-sm font-medium text-slate-200"
+            className="text-sm font-medium text-slate-900 dark:text-slate-200"
           >
             {m("tzDateTime")}
           </label>
@@ -123,21 +123,21 @@ export function TimezoneConverter({ locale }: Props) {
             id="tz-dt"
             value={dateTime}
             onChange={(e) => setDateTime(e.target.value)}
-            className="w-full font-mono text-sm py-2.5 px-3 rounded-lg border border-slate-700 bg-slate-900 text-slate-200 focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20"
+            className="w-full font-mono text-sm py-2.5 px-3 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-200 focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20"
           />
         </div>
 
         <button
           type="button"
           onClick={onSwap}
-          className="font-semibold text-sm py-2 px-3.5 rounded-lg cursor-pointer bg-transparent text-amber-400 border border-slate-700 hover:bg-amber-400/10 mb-4"
+          className="font-semibold text-sm py-2 px-3.5 rounded-lg cursor-pointer bg-transparent text-amber-400 border border-slate-300 dark:border-slate-700 hover:bg-amber-400/10 mb-4"
         >
           {m("tzSwap")}
         </button>
 
         {result && (
-          <div className="mt-4 pt-4 border-t border-slate-700">
-            <h3 className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-3">
+          <div className="mt-4 pt-4 border-t border-slate-300 dark:border-slate-700">
+            <h3 className="text-xs font-semibold uppercase tracking-widest text-slate-600 dark:text-slate-400 mb-3">
               {m("tzResult")}
             </h3>
             <div className="grid gap-2.5">
@@ -155,10 +155,10 @@ export function TimezoneConverter({ locale }: Props) {
                 <div
                   key={row.label}
                   className={`flex justify-between items-baseline gap-4 py-2 text-[0.95rem] ${
-                    i < arr.length - 1 ? "border-b border-slate-700" : ""
+                    i < arr.length - 1 ? "border-b border-slate-300 dark:border-slate-700" : ""
                   }`}
                 >
-                  <span className="text-slate-400">{row.label}</span>
+                  <span className="text-slate-600 dark:text-slate-400">{row.label}</span>
                   <strong className="font-mono font-medium text-sm text-right">
                     {row.value}
                   </strong>

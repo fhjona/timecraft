@@ -76,7 +76,7 @@ const App = () => {
   return (
     <div className="max-w-[580px] mx-auto p-[clamp(1rem,4vw,2.5rem)]">
       {/* Banner */}
-      <header className="relative mb-6 rounded-2xl overflow-hidden bg-gradient-to-br from-amber-500/10 via-orange-500/5 to-purple-500/10 border border-slate-700/60 p-5 pb-4">
+      <header className="relative mb-6 rounded-2xl overflow-hidden bg-gradient-to-br from-amber-500/10 via-orange-500/5 to-purple-500/10 border border-slate-300/60 dark:border-slate-700/60 p-5 pb-4">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_20%,rgba(251,191,36,0.08),transparent_60%)]" />
 
         {/* Top-right controls inside banner */}
@@ -87,7 +87,7 @@ const App = () => {
             aria-label={m("langLabel")}
             value={locale}
             onChange={(e) => applyLocale(e.target.value as Locale)}
-            className="font-[inherit] text-xs py-1 px-1.5 rounded-lg border border-slate-700 bg-slate-800/60 text-slate-400 cursor-pointer focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20"
+            className="font-[inherit] text-xs py-1 px-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-100/60 dark:bg-slate-800/60 text-slate-600 dark:text-slate-400 cursor-pointer focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20"
           >
             <option value="en">English</option>
             <option value="nb">Norsk</option>
@@ -107,17 +107,17 @@ const App = () => {
             type="button"
             onClick={() => setShowSettings(true)}
             aria-label="Settings"
-            className="text-slate-400 hover:text-amber-400 text-xl cursor-pointer focus:outline-none leading-none"
+            className="text-slate-600 dark:text-slate-400 hover:text-amber-400 text-xl cursor-pointer focus:outline-none leading-none"
           >
             &#9881;
           </button>
         </div>
 
         <div className="relative text-center mb-3">
-          <h1 className="text-2xl font-bold tracking-tight text-white mb-1">
+          <h1 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white mb-1">
             <span className="text-amber-400">Time</span>Craft
           </h1>
-          <p className="text-xs text-slate-400">{tagline}</p>
+          <p className="text-xs text-slate-600 dark:text-slate-400">{tagline}</p>
         </div>
 
         {/* Tab navigation inside banner */}
@@ -130,7 +130,7 @@ const App = () => {
               className={`text-sm py-2 px-4 rounded-full cursor-pointer transition-all ${
                 tab === t.id
                   ? "bg-amber-400 text-slate-950 font-semibold shadow-lg shadow-amber-400/20"
-                  : "bg-slate-800/60 text-slate-400 hover:text-slate-200 hover:bg-slate-700/60"
+                  : "bg-slate-100/60 dark:bg-slate-800/60 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 hover:bg-slate-200/60 dark:hover:bg-slate-700/60"
               }`}
             >
               {t.label}

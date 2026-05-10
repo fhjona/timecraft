@@ -30,6 +30,10 @@ type Labels = {
   privacyLink: string;
   // New sections
   displayTitle: string;
+  theme: string;
+  themeLight: string;
+  themeDark: string;
+  themeSystem: string;
   showWeekNumbers: string;
   fontSize: string;
   fontSizeSm: string;
@@ -67,6 +71,10 @@ function labels(locale: Locale): Labels {
       clearConfirm: "Delete all countdowns, custom holidays and settings?",
       privacyLink: "View privacy policy",
       displayTitle: "Display",
+      theme: "Theme",
+      themeLight: "Light",
+      themeDark: "Dark",
+      themeSystem: "System",
       showWeekNumbers: "Show week numbers",
       fontSize: "Font size",
       fontSizeSm: "Small",
@@ -101,6 +109,10 @@ function labels(locale: Locale): Labels {
       clearConfirm: "Slett alle nedtellinger, egne fridager og innstillinger?",
       privacyLink: "Vis personvernerklæring",
       displayTitle: "Visning",
+      theme: "Tema",
+      themeLight: "Lyst",
+      themeDark: "Mørkt",
+      themeSystem: "System",
       showWeekNumbers: "Vis ukenummer",
       fontSize: "Skriftstørrelse",
       fontSizeSm: "Liten",
@@ -134,6 +146,10 @@ function labels(locale: Locale): Labels {
       clearData: "Excluir todos os dados",
       clearConfirm: "Excluir todas as contagens, feriados personalizados e configurações?",
       privacyLink: "Ver política de privacidade",
+      theme: "Tema",
+      themeLight: "Claro",
+      themeDark: "Escuro",
+      themeSystem: "Sistema",
     },
     sv: {
       title: "Inställningar",
@@ -146,6 +162,10 @@ function labels(locale: Locale): Labels {
       overtimeThreshold: "Standardgräns för övertid",
       reset: "Återställ",
       close: "Stäng",
+      theme: "Tema",
+      themeLight: "Ljust",
+      themeDark: "Mörkt",
+      themeSystem: "System",
     },
     da: {
       title: "Indstillinger",
@@ -158,6 +178,10 @@ function labels(locale: Locale): Labels {
       overtimeThreshold: "Standardgrænse for overarbejde",
       reset: "Nulstil",
       close: "Luk",
+      theme: "Tema",
+      themeLight: "Lyst",
+      themeDark: "Mørkt",
+      themeSystem: "System",
     },
     es: {
       title: "Ajustes",
@@ -316,6 +340,7 @@ export function SettingsPanel({ locale, settings, onChange, onClose }: Props) {
       countdownNotifications: false,
       defaultTab: "span",
       fontSize: "md",
+      theme: "system",
     });
   };
 
@@ -333,15 +358,15 @@ export function SettingsPanel({ locale, settings, onChange, onClose }: Props) {
       onClick={onClose}
     >
       <div
-        className="w-full max-w-md bg-slate-900 border border-slate-700 rounded-xl p-6 shadow-2xl max-h-[90vh] overflow-y-auto"
+        className="w-full max-w-md bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl p-6 shadow-2xl max-h-[90vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between mb-5">
-          <h2 className="text-xl font-bold text-white">{L.title}</h2>
+          <h2 className="text-xl font-bold text-slate-900 dark:text-white">{L.title}</h2>
           <button
             type="button"
             onClick={onClose}
-            className="text-slate-400 hover:text-slate-200 text-xl cursor-pointer"
+            className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 text-xl cursor-pointer"
           >
             &times;
           </button>
@@ -349,7 +374,7 @@ export function SettingsPanel({ locale, settings, onChange, onClose }: Props) {
 
         <div className="grid gap-4">
           <div className="flex flex-col gap-1">
-            <label className="text-sm font-medium text-slate-400">{L.timeFormat}</label>
+            <label className="text-sm font-medium text-slate-600 dark:text-slate-400">{L.timeFormat}</label>
             <div className="flex gap-2">
               {(["24h", "12h"] as const).map((v) => (
                 <button
@@ -359,7 +384,7 @@ export function SettingsPanel({ locale, settings, onChange, onClose }: Props) {
                   className={`flex-1 text-sm py-2 px-3 rounded-lg cursor-pointer transition-all ${
                     settings.timeFormat === v
                       ? "bg-amber-400 text-slate-950 font-semibold"
-                      : "bg-slate-800 text-slate-400 border border-slate-700 hover:text-slate-200"
+                      : "bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-300 dark:border-slate-700 hover:text-slate-900 dark:hover:text-slate-200"
                   }`}
                 >
                   {v}
@@ -369,7 +394,7 @@ export function SettingsPanel({ locale, settings, onChange, onClose }: Props) {
           </div>
 
           <div className="flex flex-col gap-1">
-            <label className="text-sm font-medium text-slate-400">{L.firstDay}</label>
+            <label className="text-sm font-medium text-slate-600 dark:text-slate-400">{L.firstDay}</label>
             <div className="flex gap-2">
               <button
                 type="button"
@@ -377,7 +402,7 @@ export function SettingsPanel({ locale, settings, onChange, onClose }: Props) {
                 className={`flex-1 text-sm py-2 px-3 rounded-lg cursor-pointer transition-all ${
                   settings.firstDayOfWeek === "mon"
                     ? "bg-amber-400 text-slate-950 font-semibold"
-                    : "bg-slate-800 text-slate-400 border border-slate-700 hover:text-slate-200"
+                    : "bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-300 dark:border-slate-700 hover:text-slate-900 dark:hover:text-slate-200"
                 }`}
               >
                 {L.mon}
@@ -388,7 +413,7 @@ export function SettingsPanel({ locale, settings, onChange, onClose }: Props) {
                 className={`flex-1 text-sm py-2 px-3 rounded-lg cursor-pointer transition-all ${
                   settings.firstDayOfWeek === "sun"
                     ? "bg-amber-400 text-slate-950 font-semibold"
-                    : "bg-slate-800 text-slate-400 border border-slate-700 hover:text-slate-200"
+                    : "bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-300 dark:border-slate-700 hover:text-slate-900 dark:hover:text-slate-200"
                 }`}
               >
                 {L.sun}
@@ -397,14 +422,14 @@ export function SettingsPanel({ locale, settings, onChange, onClose }: Props) {
           </div>
 
           <div className="flex flex-col gap-1">
-            <label htmlFor="set-date-format" className="text-sm font-medium text-slate-400">
+            <label htmlFor="set-date-format" className="text-sm font-medium text-slate-600 dark:text-slate-400">
               {L.dateFormat}
             </label>
             <select
               id="set-date-format"
               value={settings.dateFormat}
               onChange={(e) => update("dateFormat", e.target.value as Settings["dateFormat"])}
-              className="font-[inherit] text-sm py-2 px-3 rounded-lg border border-slate-700 bg-slate-800 text-slate-200 cursor-pointer focus:outline-none focus:border-amber-400"
+              className="font-[inherit] text-sm py-2 px-3 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-200 cursor-pointer focus:outline-none focus:border-amber-400"
             >
               <option value="DD/MM/YYYY">DD/MM/YYYY (31/12/2026)</option>
               <option value="MM/DD/YYYY">MM/DD/YYYY (12/31/2026)</option>
@@ -413,14 +438,14 @@ export function SettingsPanel({ locale, settings, onChange, onClose }: Props) {
           </div>
 
           <div className="flex flex-col gap-1">
-            <label htmlFor="set-country" className="text-sm font-medium text-slate-400">
+            <label htmlFor="set-country" className="text-sm font-medium text-slate-600 dark:text-slate-400">
               {L.defaultCountry}
             </label>
             <select
               id="set-country"
               value={settings.defaultCountry}
               onChange={(e) => update("defaultCountry", e.target.value as Settings["defaultCountry"])}
-              className="font-[inherit] text-sm py-2 px-3 rounded-lg border border-slate-700 bg-slate-800 text-slate-200 cursor-pointer focus:outline-none focus:border-amber-400"
+              className="font-[inherit] text-sm py-2 px-3 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-200 cursor-pointer focus:outline-none focus:border-amber-400"
             >
               {COUNTRY_LIST.map((c) => (
                 <option key={c.code} value={c.code}>{c.name}</option>
@@ -429,7 +454,7 @@ export function SettingsPanel({ locale, settings, onChange, onClose }: Props) {
           </div>
 
           <div className="flex flex-col gap-1">
-            <label htmlFor="set-overtime" className="text-sm font-medium text-slate-400">
+            <label htmlFor="set-overtime" className="text-sm font-medium text-slate-600 dark:text-slate-400">
               {L.overtimeThreshold}
             </label>
             <input
@@ -440,18 +465,37 @@ export function SettingsPanel({ locale, settings, onChange, onClose }: Props) {
               max="24"
               value={settings.overtimeThreshold}
               onChange={(e) => update("overtimeThreshold", +e.target.value)}
-              className="font-mono text-sm py-2 px-3 rounded-lg border border-slate-700 bg-slate-800 text-slate-200 focus:outline-none focus:border-amber-400"
+              className="font-mono text-sm py-2 px-3 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-200 focus:outline-none focus:border-amber-400"
             />
           </div>
 
           {/* Display section */}
-          <div className="pt-4 mt-2 border-t border-slate-700">
-            <h3 className="text-sm font-semibold uppercase tracking-widest text-slate-400 mb-3">
+          <div className="pt-4 mt-2 border-t border-slate-300 dark:border-slate-700">
+            <h3 className="text-sm font-semibold uppercase tracking-widest text-slate-600 dark:text-slate-400 mb-3">
               {L.displayTitle}
             </h3>
             <div className="flex flex-col gap-3">
+              <div className="flex flex-col gap-1">
+                <label className="text-sm font-medium text-slate-600 dark:text-slate-400">{L.theme}</label>
+                <div className="flex gap-2">
+                  {([["light", L.themeLight], ["dark", L.themeDark], ["system", L.themeSystem]] as const).map(([v, label]) => (
+                    <button
+                      key={v}
+                      type="button"
+                      onClick={() => update("theme", v)}
+                      className={`flex-1 text-sm py-2 px-2 rounded-lg cursor-pointer transition-all ${
+                        settings.theme === v
+                          ? "bg-amber-400 text-slate-950 font-semibold"
+                          : "bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-300 dark:border-slate-700 hover:text-slate-900 dark:hover:text-slate-200"
+                      }`}
+                    >
+                      {label}
+                    </button>
+                  ))}
+                </div>
+              </div>
               <label className="flex items-center justify-between cursor-pointer">
-                <span className="text-sm text-slate-200">{L.showWeekNumbers}</span>
+                <span className="text-sm text-slate-900 dark:text-slate-200">{L.showWeekNumbers}</span>
                 <input
                   type="checkbox"
                   checked={settings.showWeekNumbers}
@@ -460,7 +504,7 @@ export function SettingsPanel({ locale, settings, onChange, onClose }: Props) {
                 />
               </label>
               <div className="flex flex-col gap-1">
-                <label className="text-sm font-medium text-slate-400">{L.fontSize}</label>
+                <label className="text-sm font-medium text-slate-600 dark:text-slate-400">{L.fontSize}</label>
                 <div className="flex gap-2">
                   {([["sm", L.fontSizeSm], ["md", L.fontSizeMd], ["lg", L.fontSizeLg]] as const).map(([v, label]) => (
                     <button
@@ -470,7 +514,7 @@ export function SettingsPanel({ locale, settings, onChange, onClose }: Props) {
                       className={`flex-1 text-sm py-2 px-2 rounded-lg cursor-pointer transition-all ${
                         settings.fontSize === v
                           ? "bg-amber-400 text-slate-950 font-semibold"
-                          : "bg-slate-800 text-slate-400 border border-slate-700 hover:text-slate-200"
+                          : "bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-300 dark:border-slate-700 hover:text-slate-900 dark:hover:text-slate-200"
                       }`}
                     >
                       {label}
@@ -482,20 +526,20 @@ export function SettingsPanel({ locale, settings, onChange, onClose }: Props) {
           </div>
 
           {/* Behavior section */}
-          <div className="pt-4 mt-2 border-t border-slate-700">
-            <h3 className="text-sm font-semibold uppercase tracking-widest text-slate-400 mb-3">
+          <div className="pt-4 mt-2 border-t border-slate-300 dark:border-slate-700">
+            <h3 className="text-sm font-semibold uppercase tracking-widest text-slate-600 dark:text-slate-400 mb-3">
               {L.behaviorTitle}
             </h3>
             <div className="flex flex-col gap-3">
               <div className="flex flex-col gap-1">
-                <label htmlFor="set-default-tab" className="text-sm font-medium text-slate-400">
+                <label htmlFor="set-default-tab" className="text-sm font-medium text-slate-600 dark:text-slate-400">
                   {L.defaultTab}
                 </label>
                 <select
                   id="set-default-tab"
                   value={settings.defaultTab}
                   onChange={(e) => update("defaultTab", e.target.value as Settings["defaultTab"])}
-                  className="font-[inherit] text-sm py-2 px-3 rounded-lg border border-slate-700 bg-slate-800 text-slate-200 cursor-pointer focus:outline-none focus:border-amber-400"
+                  className="font-[inherit] text-sm py-2 px-3 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-200 cursor-pointer focus:outline-none focus:border-amber-400"
                 >
                   <option value="span">{msg(locale, "navSpan")}</option>
                   <option value="timezone">{msg(locale, "navTimezone")}</option>
@@ -506,7 +550,7 @@ export function SettingsPanel({ locale, settings, onChange, onClose }: Props) {
                 </select>
               </div>
               <label className="flex items-center justify-between cursor-pointer">
-                <span className="text-sm text-slate-200">{L.countdownNotifications}</span>
+                <span className="text-sm text-slate-900 dark:text-slate-200">{L.countdownNotifications}</span>
                 <input
                   type="checkbox"
                   checked={settings.countdownNotifications}
@@ -518,22 +562,22 @@ export function SettingsPanel({ locale, settings, onChange, onClose }: Props) {
           </div>
 
           {/* Backup section */}
-          <div className="pt-4 mt-2 border-t border-slate-700">
-            <h3 className="text-sm font-semibold uppercase tracking-widest text-slate-400 mb-3">
+          <div className="pt-4 mt-2 border-t border-slate-300 dark:border-slate-700">
+            <h3 className="text-sm font-semibold uppercase tracking-widest text-slate-600 dark:text-slate-400 mb-3">
               {L.backupTitle}
             </h3>
             <div className="flex gap-2">
               <button
                 type="button"
                 onClick={handleExport}
-                className="flex-1 text-sm py-2 px-3 rounded-lg cursor-pointer bg-slate-800 text-amber-400 border border-slate-700 hover:bg-slate-700"
+                className="flex-1 text-sm py-2 px-3 rounded-lg cursor-pointer bg-slate-100 dark:bg-slate-800 text-amber-400 border border-slate-300 dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-slate-700"
               >
                 {L.exportBtn}
               </button>
               <button
                 type="button"
                 onClick={() => fileInputRef.current?.click()}
-                className="flex-1 text-sm py-2 px-3 rounded-lg cursor-pointer bg-slate-800 text-amber-400 border border-slate-700 hover:bg-slate-700"
+                className="flex-1 text-sm py-2 px-3 rounded-lg cursor-pointer bg-slate-100 dark:bg-slate-800 text-amber-400 border border-slate-300 dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-slate-700"
               >
                 {L.importBtn}
               </button>
@@ -551,11 +595,11 @@ export function SettingsPanel({ locale, settings, onChange, onClose }: Props) {
           </div>
 
           {/* Privacy section */}
-          <div className="pt-4 mt-2 border-t border-slate-700">
-            <h3 className="text-sm font-semibold uppercase tracking-widest text-slate-400 mb-2">
+          <div className="pt-4 mt-2 border-t border-slate-300 dark:border-slate-700">
+            <h3 className="text-sm font-semibold uppercase tracking-widest text-slate-600 dark:text-slate-400 mb-2">
               {L.privacyTitle}
             </h3>
-            <p className="text-sm text-slate-400 mb-3 leading-relaxed">
+            <p className="text-sm text-slate-600 dark:text-slate-400 mb-3 leading-relaxed">
               {L.privacyInfo}
             </p>
             <div className="flex flex-col gap-2">
@@ -581,7 +625,7 @@ export function SettingsPanel({ locale, settings, onChange, onClose }: Props) {
             <button
               type="button"
               onClick={reset}
-              className="flex-1 text-sm py-2 px-3 rounded-lg cursor-pointer bg-transparent text-slate-400 border border-slate-700 hover:bg-slate-800"
+              className="flex-1 text-sm py-2 px-3 rounded-lg cursor-pointer bg-transparent text-slate-600 dark:text-slate-400 border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800"
             >
               {L.reset}
             </button>
@@ -595,16 +639,16 @@ export function SettingsPanel({ locale, settings, onChange, onClose }: Props) {
           </div>
 
           {/* About section */}
-          <div className="pt-4 mt-2 border-t border-slate-700 text-center">
-            <h3 className="text-sm font-semibold uppercase tracking-widest text-slate-400 mb-2">
+          <div className="pt-4 mt-2 border-t border-slate-300 dark:border-slate-700 text-center">
+            <h3 className="text-sm font-semibold uppercase tracking-widest text-slate-600 dark:text-slate-400 mb-2">
               {L.aboutTitle}
             </h3>
-            <p className="text-sm text-slate-400">
+            <p className="text-sm text-slate-600 dark:text-slate-400">
               <span className="text-amber-400 font-semibold">TimeCraft</span>
               {" \u00b7 "}
               {L.aboutVersion} {APP_VERSION}
             </p>
-            <p className="text-sm text-slate-500 mt-1">{L.aboutBy}</p>
+            <p className="text-sm text-slate-500 dark:text-slate-500 mt-1">{L.aboutBy}</p>
           </div>
         </div>
       </div>

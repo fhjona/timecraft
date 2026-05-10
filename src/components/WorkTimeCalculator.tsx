@@ -69,11 +69,11 @@ export function WorkTimeCalculator({ locale }: Props) {
       <h2 className="text-[clamp(1.3rem,3.5vw,1.6rem)] font-bold tracking-tight mb-1">
         {m("wtTitle")}
       </h2>
-      <p className="text-slate-400 text-[0.95rem] mb-6">{m("wtLede")}</p>
+      <p className="text-slate-600 dark:text-slate-400 text-[0.95rem] mb-6">{m("wtLede")}</p>
 
-      <div className="bg-slate-800/80 border border-slate-700 rounded-xl p-6 shadow-2xl">
+      <div className="bg-slate-100/80 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl p-6 shadow-2xl">
         <div className="flex items-center gap-3 mb-5">
-          <label className="text-sm font-medium text-slate-200">{m("wtThreshold")}</label>
+          <label className="text-sm font-medium text-slate-900 dark:text-slate-200">{m("wtThreshold")}</label>
           <input
             type="number"
             step="0.5"
@@ -81,7 +81,7 @@ export function WorkTimeCalculator({ locale }: Props) {
             max="24"
             value={threshold}
             onChange={(e) => setThreshold(+e.target.value)}
-            className="w-20 font-mono text-sm py-2 px-2 rounded-lg border border-slate-700 bg-slate-900 text-slate-200 focus:outline-none focus:border-amber-400"
+            className="w-20 font-mono text-sm py-2 px-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-200 focus:outline-none focus:border-amber-400"
           />
         </div>
 
@@ -96,37 +96,37 @@ export function WorkTimeCalculator({ locale }: Props) {
             return (
               <div
                 key={entry.id}
-                className="bg-slate-900/60 border border-slate-700 rounded-lg p-3"
+                className="bg-white/60 dark:bg-slate-900/60 border border-slate-300 dark:border-slate-700 rounded-lg p-3"
               >
                 <div className="flex flex-wrap items-center gap-2 mb-2">
                   <input
                     type="text"
                     value={entry.label}
                     onChange={(e) => updateEntry(entry.id, "label", e.target.value)}
-                    className="w-24 text-sm font-medium py-1 px-2 rounded border border-slate-700 bg-slate-800 text-slate-200 focus:outline-none focus:border-amber-400"
+                    className="w-24 text-sm font-medium py-1 px-2 rounded border border-slate-300 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-200 focus:outline-none focus:border-amber-400"
                   />
                   <input
                     type="time"
                     value={entry.startTime}
                     onChange={(e) => updateEntry(entry.id, "startTime", e.target.value)}
-                    className="font-mono text-sm py-1 px-2 rounded border border-slate-700 bg-slate-800 text-slate-200 focus:outline-none focus:border-amber-400"
+                    className="font-mono text-sm py-1 px-2 rounded border border-slate-300 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-200 focus:outline-none focus:border-amber-400"
                   />
-                  <span className="text-slate-500">&ndash;</span>
+                  <span className="text-slate-500 dark:text-slate-500">&ndash;</span>
                   <input
                     type="time"
                     value={entry.endTime}
                     onChange={(e) => updateEntry(entry.id, "endTime", e.target.value)}
-                    className="font-mono text-sm py-1 px-2 rounded border border-slate-700 bg-slate-800 text-slate-200 focus:outline-none focus:border-amber-400"
+                    className="font-mono text-sm py-1 px-2 rounded border border-slate-300 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-200 focus:outline-none focus:border-amber-400"
                   />
                   <input
                     type="number"
                     min="0"
                     value={entry.breakMinutes}
                     onChange={(e) => updateEntry(entry.id, "breakMinutes", +e.target.value)}
-                    className="w-16 font-mono text-sm py-1 px-2 rounded border border-slate-700 bg-slate-800 text-slate-200 focus:outline-none focus:border-amber-400"
+                    className="w-16 font-mono text-sm py-1 px-2 rounded border border-slate-300 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-200 focus:outline-none focus:border-amber-400"
                     title={m("wtBreak")}
                   />
-                  <span className="text-xs text-slate-500">min</span>
+                  <span className="text-xs text-slate-500 dark:text-slate-500">min</span>
                   {entries.length > 1 && (
                     <button
                       type="button"
@@ -138,9 +138,9 @@ export function WorkTimeCalculator({ locale }: Props) {
                   )}
                 </div>
                 {r && (
-                  <div className="flex flex-wrap gap-3 text-xs text-slate-400">
+                  <div className="flex flex-wrap gap-3 text-xs text-slate-600 dark:text-slate-400">
                     <span>
-                      {m("wtNet")}: <strong className="text-slate-200">{r.netFormatted}</strong>
+                      {m("wtNet")}: <strong className="text-slate-900 dark:text-slate-200">{r.netFormatted}</strong>
                     </span>
                     {r.overtimeMinutes > 0 && (
                       <span className="text-amber-400">
@@ -158,14 +158,14 @@ export function WorkTimeCalculator({ locale }: Props) {
           <button
             type="button"
             onClick={addDay}
-            className="text-sm py-2 px-3.5 rounded-lg cursor-pointer bg-transparent text-amber-400 border border-slate-700 hover:bg-amber-400/10"
+            className="text-sm py-2 px-3.5 rounded-lg cursor-pointer bg-transparent text-amber-400 border border-slate-300 dark:border-slate-700 hover:bg-amber-400/10"
           >
             {m("wtAddDay")}
           </button>
         </div>
 
-        <div className="pt-5 border-t border-slate-700">
-          <h3 className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-3">
+        <div className="pt-5 border-t border-slate-300 dark:border-slate-700">
+          <h3 className="text-xs font-semibold uppercase tracking-widest text-slate-600 dark:text-slate-400 mb-3">
             {m("wtWeekSummary")}
           </h3>
           <div className="grid gap-2.5">
@@ -176,10 +176,10 @@ export function WorkTimeCalculator({ locale }: Props) {
               <div
                 key={row.label}
                 className={`flex justify-between items-baseline gap-4 py-2 text-[0.95rem] ${
-                  i < arr.length - 1 ? "border-b border-slate-700" : ""
+                  i < arr.length - 1 ? "border-b border-slate-300 dark:border-slate-700" : ""
                 }`}
               >
-                <span className="text-slate-400">{row.label}</span>
+                <span className="text-slate-600 dark:text-slate-400">{row.label}</span>
                 <strong className="font-mono font-medium text-sm">{row.value}</strong>
               </div>
             ))}
