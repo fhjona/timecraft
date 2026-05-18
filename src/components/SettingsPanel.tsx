@@ -290,8 +290,11 @@ export function SettingsPanel({ locale, settings, onChange, onClose }: Props) {
 
   // Mirror the overtimeThreshold as a string while editing so the input can be
   // truly empty without auto-resetting to "0". Parse on every change; empty
-  // input is treated as 0 (no overtime).
-  const [overtimeInput, setOvertimeInput] = useState(String(settings.overtimeThreshold));
+  // input is treated as 0 (no overtime). When the stored value is 0 (e.g. user
+  // cleared the field and reopened settings), show empty instead of "0".
+  const [overtimeInput, setOvertimeInput] = useState(
+    settings.overtimeThreshold === 0 ? "" : String(settings.overtimeThreshold)
+  );
 
   const update = <K extends keyof Settings>(key: K, value: Settings[K]) => {
     onChange({ ...settings, [key]: value });
